@@ -1,0 +1,23 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/common/Navbar';
+import Home from './pages/Home';
+
+function App() {
+  return (
+    <Router>
+      <div className="flex flex-col min-h-screen bg-brand-bg">
+        <Navbar />
+
+        {/* Removed padding so the Hero goes under the glass Navbar */}
+        <main className="flex-grow"> 
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
