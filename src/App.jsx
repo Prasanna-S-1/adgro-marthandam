@@ -1,21 +1,26 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/common/Navbar';
+
+// Import the Master Layout
+import Layout from './components/common/Layout';
+
+// Pages
 import Home from './pages/Home';
+import About from './pages/About';     // <-- 1. Imported the new About Page
+import Contact from './pages/Contact';
 
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-brand-bg">
-        <Navbar />
-
-        {/* Removed padding so the Hero goes under the glass Navbar */}
-        <main className="flex-grow"> 
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-      </div>
+      {/* The Layout wraps the entire routing system */}
+      <Layout>
+        <Routes>
+          {/* Core Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />       {/* <-- 2. Added the About Route */}
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }
