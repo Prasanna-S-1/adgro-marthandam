@@ -3,8 +3,8 @@
 /* -------------------------------------------------------------------------- */
 
 /* 1. CORE IMPORTS (Must be at the absolute top) */
+/* Google Fonts loaded via <link> in index.html to avoid CSS @import ordering issues */
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;600;700&display=swap');
 
 /* -------------------------------------------------------------------------- */
 /* 2. THE OFFICIAL PREMIUM CLINICAL THEME                                      */
@@ -54,44 +54,111 @@
 
   /* --- OFFICIAL ANIMATION KEYFRAMES --- */
   @keyframes reveal-up {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
   @keyframes slow-zoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.12); }
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.12);
+    }
   }
+
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
   }
+
   @keyframes draw-line {
-    0% { width: 0%; }
-    100% { width: 100%; }
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 100%;
+    }
   }
+
   @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
+
   @keyframes shimmer {
-    100% { left: 100%; }
+    100% {
+      left: 100%;
+    }
   }
+
   @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
   }
+
   @keyframes glow-pulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.8; }
+
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 0.8;
+    }
   }
+
   @keyframes border-glow {
-    0%, 100% { border-color: rgba(211, 47, 47, 0.2); }
-    50% { border-color: rgba(211, 47, 47, 0.5); }
+
+    0%,
+    100% {
+      border-color: rgba(211, 47, 47, 0.2);
+    }
+
+    50% {
+      border-color: rgba(211, 47, 47, 0.5);
+    }
   }
+
   @keyframes text-shimmer {
-    0% { background-position: -200% 50%; }
-    100% { background-position: 200% 50%; }
+    0% {
+      background-position: -200% 50%;
+    }
+
+    100% {
+      background-position: 200% 50%;
+    }
   }
 
   /* --- ANIMATION UTILITY MAPPING --- */
@@ -128,7 +195,11 @@
     color: var(--color-brand-red);
   }
 
-  h1, h2, h3, h4, .font-serif {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
     font-family: var(--font-serif);
     @apply tracking-tight font-bold;
   }
@@ -138,14 +209,21 @@
   }
 
   /* PREMIUM GRADIENT SCROLLBAR */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background-color: rgba(26, 26, 26, 0.03); }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(26, 26, 26, 0.03);
+  }
+
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(to bottom, var(--color-brand-red), var(--color-brand-gold));
     @apply rounded-full border-2 border-white;
   }
-  ::-webkit-scrollbar-thumb:hover { 
-    background: linear-gradient(to bottom, var(--color-brand-red-dark), var(--color-brand-gold-dark)); 
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--color-brand-red-dark), var(--color-brand-gold-dark));
   }
 }
 
@@ -159,9 +237,9 @@
 
   /* --- PREMIUM BUTTON WITH GRADIENT FILL --- */
   .btn-premium {
-    @apply relative overflow-hidden px-8 py-3 rounded-full font-bold transition-all duration-500
-           border-2 border-brand-red text-brand-red flex items-center gap-2 z-10;
+    @apply relative overflow-hidden px-8 py-3 rounded-full font-bold transition-all duration-500 border-2 border-brand-red text-brand-red flex items-center gap-2 z-10;
   }
+
   .btn-premium::before {
     content: '';
     @apply absolute inset-0 -z-10;
@@ -169,8 +247,14 @@
     transform: translateY(100%);
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .btn-premium:hover { @apply text-white shadow-glow-red; }
-  .btn-premium:hover::before { transform: translateY(0); }
+
+  .btn-premium:hover {
+    @apply text-white shadow-glow-red;
+  }
+
+  .btn-premium:hover::before {
+    transform: translateY(0);
+  }
 
   /* --- ANIMATED GRADIENT BUTTON --- */
   .btn-gradient {
@@ -179,6 +263,7 @@
     background-size: 200% 200%;
     animation: gradient-shift 4s ease infinite;
   }
+
   .btn-gradient:hover {
     @apply shadow-glow-red;
     transform: translateY(-2px);
@@ -189,23 +274,25 @@
     @apply bg-white/70 backdrop-blur-xl rounded-2xl border border-white/40;
     box-shadow: var(--shadow-glass);
   }
+
   .glass-card-dark {
     @apply bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10;
     box-shadow: var(--shadow-glass-dark);
   }
 
   .treatment-card {
-    @apply relative bg-white p-8 rounded-xl shadow-premium transition-all duration-500
-           border border-gray-100;
+    @apply relative bg-white p-8 rounded-xl shadow-premium transition-all duration-500 border border-gray-100;
   }
+
   .treatment-card:hover {
     @apply shadow-elevated border-brand-red/20 -translate-y-2;
   }
 
   /* FORM STYLING */
-  input, textarea, select {
-    @apply w-full bg-brand-gray border border-gray-200 rounded-lg py-4 px-6 transition-all duration-300
-           focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none shadow-none;
+  input,
+  textarea,
+  select {
+    @apply w-full bg-brand-gray border border-gray-200 rounded-lg py-4 px-6 transition-all duration-300 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none shadow-none;
     font-family: var(--font-sans);
   }
 
@@ -218,15 +305,27 @@
 /* 5. ADVANCED UTILITIES                                                      */
 /* -------------------------------------------------------------------------- */
 @layer utilities {
-  .text-mask-reveal { overflow: hidden; display: block; }
-  .text-mask-reveal span { display: block; animation: var(--animation-reveal-up); }
+  .text-mask-reveal {
+    overflow: hidden;
+    display: block;
+  }
 
-  .corner-accent-bl { @apply absolute bottom-0 left-0 w-12 h-4 bg-brand-red; }
-  .corner-accent-tr { @apply absolute top-0 right-0 w-12 h-4 bg-brand-red; }
+  .text-mask-reveal span {
+    display: block;
+    animation: var(--animation-reveal-up);
+  }
+
+  .corner-accent-bl {
+    @apply absolute bottom-0 left-0 w-12 h-4 bg-brand-red;
+  }
+
+  .corner-accent-tr {
+    @apply absolute top-0 right-0 w-12 h-4 bg-brand-red;
+  }
 
   .bg-clinical-mesh {
     background-color: var(--color-brand-bg);
-    background-image: 
+    background-image:
       radial-gradient(at 0% 0%, rgba(211, 47, 47, 0.03) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(26, 26, 26, 0.02) 0px, transparent 50%);
   }
@@ -243,13 +342,11 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    background-image: linear-gradient(
-      90deg,
-      var(--color-brand-gold),
-      var(--color-brand-red),
-      var(--color-brand-gold),
-      var(--color-brand-red)
-    );
+    background-image: linear-gradient(90deg,
+        var(--color-brand-gold),
+        var(--color-brand-red),
+        var(--color-brand-gold),
+        var(--color-brand-red));
     background-size: 400% 100%;
     animation: text-shimmer 3s ease-in-out infinite;
   }
@@ -281,7 +378,7 @@
     inset: 0;
     opacity: 0.06;
     pointer-events: none;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
     background-size: 24px 24px;
     z-index: 1;
   }
@@ -303,6 +400,7 @@
   .gradient-border {
     position: relative;
   }
+
   .gradient-border::before {
     content: '';
     position: absolute;
@@ -318,14 +416,28 @@
     pointer-events: none;
   }
 
-  .rotate-clinical { animation: var(--animation-spin-slow); }
-  .mobile-touch-scroll { -webkit-overflow-scrolling: touch; }
+  .rotate-clinical {
+    animation: var(--animation-spin-slow);
+  }
 
-  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-  .custom-scrollbar::-webkit-scrollbar-track { background: var(--color-brand-dark-900); }
+  .mobile-touch-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-brand-dark-900);
+  }
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: linear-gradient(to bottom, var(--color-brand-red), var(--color-brand-gold));
     border-radius: 10px;
   }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--color-brand-gold); }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-gold);
+  }
 }
