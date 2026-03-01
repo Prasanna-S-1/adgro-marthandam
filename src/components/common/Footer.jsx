@@ -18,7 +18,6 @@ const Footer = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
   };
 
-  // --- LINK DATA ---
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
@@ -34,23 +33,26 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[#0a0a0a] pt-20 lg:pt-24 overflow-hidden border-t-4 border-brand-red">
-      
-      {/* Subtle Background Glow for depth */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-red/5 rounded-full blur-[120px] pointer-events-none" />
+    <footer className="relative bg-brand-dark-900 pt-20 lg:pt-24 overflow-hidden noise-overlay">
+
+      {/* Gradient Top Border */}
+      <div className="absolute top-0 left-0 w-full h-1 gradient-line" />
+
+      {/* Animated Glow Orbs */}
+      <div className="glow-orb-red w-[500px] h-[500px] top-0 left-1/4 z-0" />
+      <div className="glow-orb-gold w-[300px] h-[300px] bottom-20 right-10 z-0" />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 xl:gap-16 mb-16"
         >
-          
+
           {/* --- COLUMN 1: BRAND & INTRO --- */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
-            {/* Logo */}
             <a href="/" className="flex flex-col inline-block mb-2">
               <h2 className="text-3xl font-serif text-white leading-none font-bold tracking-tight">
                 AdGro<span className="text-brand-red">Hair</span>
@@ -59,13 +61,13 @@ const Footer = () => {
                 Marthandam
               </span>
             </a>
-            
+
             <p className="text-gray-400 font-sans text-sm leading-relaxed pr-4">
               Discover stronger hair, glowing skin, and the confidence to shine every day. Experience the pinnacle of clinical aesthetic care.
             </p>
 
             <div className="flex items-center gap-3 text-gray-300 text-sm mt-2">
-              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 backdrop-blur-sm">
                 <Clock size={14} className="text-brand-gold" />
               </div>
               <span className="font-medium tracking-wide">Working Hours: 10 AM to 8 PM</span>
@@ -76,17 +78,17 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="flex flex-col">
             <h3 className="text-white font-serif text-xl font-bold mb-6 flex items-center gap-3">
               Quick Links
-              <div className="h-px flex-grow bg-gradient-to-r from-brand-red/50 to-transparent ml-2" />
+              <div className="h-px flex-grow bg-gradient-to-r from-brand-red/50 via-brand-gold/30 to-transparent ml-2" />
             </h3>
             <ul className="flex flex-col gap-4">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.path} 
+                  <a
+                    href={link.path}
                     className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium"
                   >
                     <ChevronRight size={14} className="text-brand-red opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                    <span className="group-hover:translate-x-1 transition-transform duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300">
                       {link.name}
                     </span>
                   </a>
@@ -99,17 +101,17 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="flex flex-col">
             <h3 className="text-white font-serif text-xl font-bold mb-6 flex items-center gap-3">
               More Information
-              <div className="h-px flex-grow bg-gradient-to-r from-brand-red/50 to-transparent ml-2" />
+              <div className="h-px flex-grow bg-gradient-to-r from-brand-red/50 via-brand-gold/30 to-transparent ml-2" />
             </h3>
             <ul className="flex flex-col gap-4">
               {moreInfo.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.path} 
+                  <a
+                    href={link.path}
                     className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium"
                   >
                     <ChevronRight size={14} className="text-brand-red opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                    <span className="group-hover:translate-x-1 transition-transform duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300">
                       {link.name}
                     </span>
                   </a>
@@ -122,21 +124,21 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="flex flex-col">
             <h3 className="text-white font-serif text-xl font-bold mb-6 flex items-center gap-3">
               Contact Us
-              <div className="h-px flex-grow bg-gradient-to-r from-brand-red/50 to-transparent ml-2" />
+              <div className="h-px flex-grow bg-gradient-to-r from-brand-red/50 via-brand-gold/30 to-transparent ml-2" />
             </h3>
             <ul className="flex flex-col gap-5">
-              
+
               <li className="flex items-start gap-4 text-gray-400 text-sm group">
-                <div className="mt-1 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-red group-hover:bg-brand-red/10 transition-colors flex-shrink-0">
+                <div className="mt-1 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-red/50 group-hover:bg-brand-red/10 group-hover:shadow-glow-red transition-all duration-500 flex-shrink-0 backdrop-blur-sm">
                   <MapPin size={14} className="text-brand-red" />
                 </div>
-                <span className="leading-relaxed">
+                <span className="leading-relaxed group-hover:text-gray-300 transition-colors">
                   {siteConfig.address}
                 </span>
               </li>
 
               <li className="flex items-center gap-4 text-gray-400 text-sm group">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-red group-hover:bg-brand-red/10 transition-colors flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-red/50 group-hover:bg-brand-red/10 group-hover:shadow-glow-red transition-all duration-500 flex-shrink-0 backdrop-blur-sm">
                   <Phone size={14} className="text-brand-red" />
                 </div>
                 <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">
@@ -145,7 +147,7 @@ const Footer = () => {
               </li>
 
               <li className="flex items-center gap-4 text-gray-400 text-sm group">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-red group-hover:bg-brand-red/10 transition-colors flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-brand-red/50 group-hover:bg-brand-red/10 group-hover:shadow-glow-red transition-all duration-500 flex-shrink-0 backdrop-blur-sm">
                   <Mail size={14} className="text-brand-red" />
                 </div>
                 <a href={`mailto:${siteConfig.email}`} className="hover:text-white transition-colors">
@@ -160,7 +162,7 @@ const Footer = () => {
       </div>
 
       {/* --- BOTTOM COPYRIGHT BAR --- */}
-      <div className="border-t border-white/10 bg-black/50">
+      <div className="border-t border-white/5 bg-black/30 backdrop-blur-sm">
         <div className="container mx-auto px-6 max-w-7xl py-6 flex flex-col md:flex-row justify-center items-center">
           <p className="text-gray-500 text-xs md:text-sm font-sans tracking-wide text-center">
             Copyright &copy; {new Date().getFullYear()} Advanced GroHair &amp; GloSkin - Marthandam. All Rights Reserved.

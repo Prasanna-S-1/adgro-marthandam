@@ -14,7 +14,7 @@ const faqData = [
   },
   {
     question: "How can I book an appointment?",
-    answer: "You can easily book an appointment through our website’s booking page, by calling our clinic directly, or via WhatsApp support. Walk-ins are welcome based on slot availability."
+    answer: "You can easily book an appointment through our website's booking page, by calling our clinic directly, or via WhatsApp support. Walk-ins are welcome based on slot availability."
   },
   {
     question: "How long do the treatments take and is there any downtime?",
@@ -23,8 +23,6 @@ const faqData = [
 ];
 
 const HomeFAQ = () => {
-  // State to track which accordion item is currently open. 
-  // Setting it to 0 opens the first one by default (optional, but good for UX).
   const [activeIndex, setActiveIndex] = useState(null);
 
   // --- ANIMATION VARIANTS ---
@@ -42,11 +40,14 @@ const HomeFAQ = () => {
   };
 
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-white">
-      <div className="container mx-auto px-6 max-w-4xl">
-        
+    <section className="relative w-full py-20 lg:py-32 bg-white overflow-hidden">
+      {/* Subtle glow orb */}
+      <div className="glow-orb-gold w-[400px] h-[400px] -bottom-32 -right-32 z-0" />
+
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+
         {/* --- SECTION HEADER --- */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -54,20 +55,20 @@ const HomeFAQ = () => {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-10 h-[2px] bg-brand-red" />
+            <div className="w-10 h-[2px] gradient-line" />
             <span className="text-brand-gold font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">
               Clear Your Doubts
             </span>
-            <div className="w-10 h-[2px] bg-brand-red" />
+            <div className="w-10 h-[2px] gradient-line" />
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-brand-dark font-bold">
-            Frequently Asked <span className="text-brand-red italic font-light">Questions</span>
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-brand-gold italic font-light">Questions</span>
           </h2>
         </motion.div>
 
         {/* --- ACCORDION LIST --- */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -78,11 +79,19 @@ const HomeFAQ = () => {
             const isOpen = activeIndex === index;
 
             return (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={itemVariants}
-                className={`border rounded-xl transition-colors duration-300 ${isOpen ? 'border-brand-red/30 bg-brand-red/[0.02]' : 'border-gray-200 bg-white hover:border-gray-300'}`}
+                className={`relative rounded-xl overflow-hidden transition-all duration-500 ${isOpen
+                    ? 'bg-brand-red/[0.02] shadow-glass'
+                    : 'bg-white hover:shadow-glass border border-gray-100'
+                  }`}
               >
+                {/* Gradient left border when active */}
+                {isOpen && (
+                  <div className="absolute top-0 left-0 w-[3px] h-full gradient-line-v rounded-l-xl" />
+                )}
+
                 {/* Accordion Toggle Button */}
                 <button
                   onClick={() => setActiveIndex(isOpen ? null : index)}
@@ -92,14 +101,19 @@ const HomeFAQ = () => {
                   <span className={`font-sans font-bold text-base md:text-lg pr-8 transition-colors duration-300 ${isOpen ? 'text-brand-red' : 'text-brand-dark'}`}>
                     {faq.question}
                   </span>
-                  
-                  {/* Rotating Icon */}
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-brand-red text-white rotate-45' : 'bg-gray-100 text-brand-dark'}`}>
+
+                  {/* Gradient Rotating Icon */}
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen
+                      ? 'text-white rotate-45 shadow-glow-red'
+                      : 'bg-gray-100 text-brand-dark'
+                    }`}
+                    style={isOpen ? { background: 'linear-gradient(135deg, var(--color-brand-red), var(--color-brand-gold))' } : {}}
+                  >
                     <Plus size={16} />
                   </div>
                 </button>
 
-                {/* Accordion Expandable Content (Framer Motion) */}
+                {/* Accordion Content */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
@@ -110,7 +124,7 @@ const HomeFAQ = () => {
                       className="overflow-hidden"
                     >
                       <div className="px-6 md:px-8 pb-6 md:pb-8 text-gray-600 font-sans text-sm md:text-base leading-relaxed">
-                        <div className="w-full h-px bg-gray-200 mb-6" /> {/* Subtle inner divider */}
+                        <div className="w-full h-px bg-gradient-to-r from-brand-red/20 via-brand-gold/20 to-transparent mb-6" />
                         {faq.answer}
                       </div>
                     </motion.div>

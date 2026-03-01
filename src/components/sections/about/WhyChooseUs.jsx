@@ -47,17 +47,17 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-[#1a1a1a] overflow-hidden">
-      
-      {/* Subtle Background Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-red/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative w-full py-20 lg:py-32 bg-[#1a1a1a] overflow-hidden noise-overlay">
+
+      {/* Animated Glow Orbs */}
+      <div className="glow-orb-red w-[500px] h-[500px] top-0 right-0 z-0" />
+      <div className="glow-orb-gold w-[300px] h-[300px] bottom-0 left-0 z-0" />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
-          
+
           {/* --- LEFT COLUMN: TEXT CONTENT --- */}
-          <motion.div 
+          <motion.div
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
@@ -73,20 +73,20 @@ const WhyChooseUs = () => {
 
             {/* Main Title */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white font-bold leading-tight mb-6">
-              Why Choose Us
+              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-brand-gold">Us</span>
             </h2>
 
-            {/* Red Divider */}
-            <div className="w-16 h-[2px] bg-brand-red mb-8" />
+            {/* Gradient Divider */}
+            <div className="w-16 h-[2px] gradient-line mb-8 rounded-full" />
 
             {/* Description */}
             <p className="text-gray-400 font-sans text-base md:text-lg leading-relaxed">
-              At <strong className="text-white font-medium">Advanced GroHair &amp; GloSkin</strong>, we don’t just offer treatments — we deliver transformations.
+              At <strong className="text-white font-medium">Advanced GroHair &amp; GloSkin</strong>, we don't just offer treatments — we deliver transformations.
             </p>
           </motion.div>
 
-          {/* --- RIGHT COLUMN: FEATURE CARDS GRID --- */}
-          <motion.div 
+          {/* --- RIGHT COLUMN: GLASSMORPHIC FEATURE CARDS --- */}
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -94,17 +94,23 @@ const WhyChooseUs = () => {
             className="w-full lg:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
             {features.map((feature, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={cardVariants}
-                className="group relative bg-[#262626] rounded-xl p-8 lg:p-10 border border-white/5 hover:border-brand-red/30 transition-all duration-500 hover:-translate-y-2 shadow-lg hover:shadow-premium-hover flex flex-col items-center sm:items-start text-center sm:text-left"
+                className="group relative glass-card-dark p-8 lg:p-10 hover:border-brand-red/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-elevated flex flex-col items-center sm:items-start text-center sm:text-left"
               >
-                {/* Decorative corner accent on hover */}
-                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-brand-red/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-xl" />
+                {/* Animated gradient corner accent on hover */}
+                <div className="absolute top-0 right-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-bl from-brand-red/20 via-brand-gold/10 to-transparent" />
+                </div>
 
-                {/* Icon */}
-                <div className="mb-6 text-gray-300 group-hover:text-brand-red group-hover:scale-110 transition-all duration-500 origin-left">
+                {/* Icon with glow halo */}
+                <div className="relative mb-6 text-gray-300 group-hover:text-brand-red group-hover:scale-110 transition-all duration-500 origin-left">
                   {feature.icon}
+                  {/* Glow halo behind icon */}
+                  <div className="absolute inset-[-8px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: 'radial-gradient(circle, rgba(211, 47, 47, 0.15), transparent 70%)' }}
+                  />
                 </div>
 
                 {/* Title */}
