@@ -21,6 +21,8 @@ import oxygenLaserTherapy from "../assets/Oxygen-Laser-Therapy.png";
 import moustacheTransplant from "../assets/2e76c5727095ff6774527c8a4cd81c81.jpg";
 import beardTransplant from "../assets/BEARD-TRANSPLANT.png";
 import eyebrowTransplant from "../assets/Eyebrow-Transplant.png";
+import nanoFueHair from "../assets/NANO-FUE-Hair.png";
+import titaniumFueHair from "../assets/MESOTHETITANIUM-FUE-Hair-TransplantRAPY-.png";
 
 export const hairData = [
   {
@@ -32,7 +34,7 @@ export const hairData = [
         category: "Hair Restoration",
         description: "Advanced hair restoration using precision titanium instruments for maximal graft survival.",
         fullDesc: "Titanium FUE is an advanced evolution of Follicular Unit Extraction (FUE) that uses high-grade titanium alloy punches for extracting individual hair follicles. These ultra-sharp, biocompatible instruments allow precise extraction with reduced trauma, better follicle survival, and faster healing.",
-        image: "/images/hair/titaniumfuehair.jpg",
+        image: titaniumFueHair,
         before: "/images/placeholders/before-after-1.jpg",
         after: "/images/placeholders/before-after-2.jpg",
         benefits: [
@@ -57,7 +59,7 @@ export const hairData = [
         category: "Hair Restoration",
         description: "Ultra-fine punches for precise, low-trauma hair extraction and dense hairlines.",
         fullDesc: "NANO FUE uses ultra-fine punches (0.6–0.7mm) for precise, low-trauma hair extraction, ensuring high follicle survival, no scarring, faster healing, and natural, dense hairlines. AdGro Hair Clinic offers advanced NANO FUE for flawless results with minimal downtime.",
-        image: "/images/hair/nanofuehair.jpg",
+        image: nanoFueHair,
         before: "/images/placeholders/before-after-1.jpg",
         after: "/images/placeholders/before-after-2.jpg",
         benefits: [

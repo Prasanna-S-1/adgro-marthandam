@@ -1,3 +1,19 @@
+import skinPeels from "../assets/Skin-Peels.png";
+import fullBodyPeel from "../assets/Full-Body-Peel.png";
+import microdermabrasion from "../assets/Microdermabrasion.png";
+import qSwitchedLaser from "../assets/Q-SWITCHED-LASER-THERAPY.png";
+import mnrfTreatment from "../assets/Microneedling-Radiofrequency-1.png";
+import rfFacials from "../assets/RF-Facials.png";
+import botox from "../assets/Botox.png";
+import dermalFillers from "../assets/Dermal-Fillers.png";
+import facePrp from "../assets/Face-prp-1.png";
+import threadLift from "../assets/Thread-Lift-1.png";
+import ndYagLaser from "../assets/ND_YAG-LASER.png";
+import diodeLaser from "../assets/DIODE-LASER-REMOVAL.png";
+import laserHairReduction from "../assets/Adgro-Hair-1.png";
+import hydraFacial from "../assets/Hydrafacial.png";
+import glutathioneTherapy from "../assets/Adgro-Hair-1-2.png";
+
 export const skinData = [
   {
     category: "Skin Brightening & Pigmentation",
@@ -8,7 +24,7 @@ export const skinData = [
         category: "Clinical Exfoliation",
         description: "Gently removes outer skin layers to boost cell renewal, leaving skin smoother and brighter.",
         fullDesc: "Peels gently remove outer skin layers to boost cell renewal, leaving skin smoother, brighter, and refreshed. Clinically designed to address acne, discoloration, uneven texture, fine lines, and dullness, they offer a natural look with minimal downtime and long-lasting results—an effective, non-surgical solution. We offer specialized peels including Glycolic, Amelan, Argipeel, Lactic Acid, Ferulac, Nomelan, Yellow, and Salicylic Acid.",
-        image: "/images/skin/skinpeel.jpg",
+        image: skinPeels,
         before: "/images/placeholders/skin-before.jpg",
         after: "/images/placeholders/skin-after.jpg",
         benefits: [
@@ -33,7 +49,7 @@ export const skinData = [
         category: "Clinical Exfoliation",
         description: "Advanced exfoliating treatment that removes dead skin, evens tone, and restores radiance body-wide.",
         fullDesc: "Full Body Peel is an advanced exfoliating treatment that removes dead skin, evens tone, and restores a smooth, radiant appearance. Customized for your skin, it targets pigmentation, rough patches, tanning, and uneven texture on the back, arms, legs, and chest.",
-        image: "/images/skin/fullbodypeel.jpg",
+        image: fullBodyPeel,
         benefits: [
           "Brighter, Even-Toned Skin – Targets sun damage, tanning, and pigmentation.",
           "Treats Body Acne & Marks – Helps reduce acne, blemishes, and ingrown hairs.",
@@ -56,7 +72,7 @@ export const skinData = [
         category: "Skin Rejuvenation",
         description: "Non-surgical treatment that removes dead skin, boosts collagen, and reveals a brighter complexion.",
         fullDesc: "Microdermabrasion is a non-surgical treatment that removes dead skin, boosts collagen, and reveals a brighter, smoother complexion. It’s effective for acne scars, uneven tone, and dull skin, with no downtime. A diamond-tip tool exfoliates while vacuum removes dead cells, cleansing and boosting circulation.",
-        image: "/images/skin/microdermabrasion.jpg",
+        image: microdermabrasion,
         benefits: [
           "Removes dead cells to brighten and even skin tone.",
           "Painless with little to no downtime.",
@@ -79,7 +95,7 @@ export const skinData = [
         category: "Laser Treatment",
         description: "High-intensity laser targeting melanin to treat pigmentation, sunspots, and tattoos.",
         fullDesc: "Q-Switched Laser Therapy treats pigmentation, melasma, sunspots, and tattoos using high-intensity light that targets melanin without harming the skin. It also boosts collagen, tightens texture, and reduces pores, wrinkles, and acne marks.",
-        image: "/images/skin/qswitched.jpg",
+        image: qSwitchedLaser,
         benefits: [
           "Best for Pigmentation – Treats melasma, sun spots, freckles, and age spots.",
           "Collagen Boost – Enhances skin elasticity and texture.",
@@ -102,7 +118,7 @@ export const skinData = [
         category: "Advanced Rejuvenation",
         description: "Combines microneedling and radiofrequency to boost collagen, improve skin texture, and firmness.",
         fullDesc: "MNRF (Microneedling Radio Frequency) Treatment is a non-surgical procedure combining microneedling and radiofrequency to boost collagen, improve skin texture, firmness, and pigmentation. Ideal for scars, fine lines, sagging skin, and large pores, with minimal downtime.",
-        image: "/images/skin/microneedling.jpg",
+        image: mnrfTreatment,
         benefits: [
           "Tightens & Lifts – Treats skin laxity on face, neck, and body.",
           "Reduces Scars & Marks – Smooths old scars and textured skin.",
@@ -130,7 +146,7 @@ export const skinData = [
         category: "Skin Tightening",
         description: "Uses radio frequency technology to tighten skin and remove skin imperfections.",
         fullDesc: "RF Facials use radio frequency technology to remove skin imperfections like moles, warts, and tags while tightening and smoothing the skin. Minimally invasive, it ensures minimal pain, downtime, and promotes a youthful, healthy appearance.",
-        image: "/images/skin/rf.jpg",
+        image: rfFacials,
         benefits: [
           "Accurate & Safe – RF targets lesions precisely while sparing surrounding tissue.",
           "Non-Surgical Rejuvenation – Tightens and firms skin for a youthful look without surgery.",
@@ -153,7 +169,7 @@ export const skinData = [
         category: "Anti-Aging Injectable",
         description: "Non-surgical cosmetic treatment that relaxes facial muscles to reduce dynamic wrinkles.",
         fullDesc: "Botox (Botulinum toxin) is a leading non-surgical cosmetic treatment that relaxes facial muscles to reduce frown, smile, and squint lines. Using trusted brands like Botox® and Dysport®, it delivers safe, natural-looking results that last 3–5 months, leaving the face refreshed and youthful.",
-        image: "/images/skin/botox.jpg",
+        image: botox,
         benefits: [
           "Reduces dynamic wrinkles like crow’s feet, forehead, and frown lines.",
           "Minimally invasive injectable therapy with minimal discomfort and no downtime.",
@@ -176,7 +192,7 @@ export const skinData = [
         category: "Anti-Aging Injectable",
         description: "Injectable treatments that restore facial volume, smooth wrinkles, and subtly redefine contours.",
         fullDesc: "Dermal fillers are injectable treatments that restore facial volume, smooth wrinkles, and subtly redefine contours. Made mostly of hyaluronic acid, they enhance firmness and elasticity for a youthful look. At our clinic, we use top-rated fillers like Juvederm and Restylane for optimal results.",
-        image: "/images/skin/dermal.jpg",
+        image: dermalFillers,
         benefits: [
           "Dermal fillers last 6 months to 2 years, depending on type and area.",
           "Customized to your facial contours and unique aesthetic goals.",
@@ -199,7 +215,7 @@ export const skinData = [
         category: "Cellular Rejuvenation",
         description: "Natural skin renewal treatment using your own platelet-rich plasma to boost collagen.",
         fullDesc: "Face PRP (Vampire Facial) is a natural skin renewal treatment using your own platelet-rich plasma to boost collagen, improve texture, and create a smoother, radiant, and youthful complexion without chemicals or surgery.",
-        image: "/images/skin/faceprp.jpg",
+        image: facePrp,
         benefits: [
           "Stimulates natural collagen to tighten skin and reduce wrinkles.",
           "PRP promotes deep cellular repair using your own growth factors.",
@@ -222,7 +238,7 @@ export const skinData = [
         category: "Non-Surgical Lift",
         description: "Non-surgical procedure that lifts and tightens sagging skin using dissolvable threads.",
         fullDesc: "Thread Lift is a non-surgical procedure that lifts and tightens sagging skin using dissolvable threads. It enhances collagen, redefines facial contours, and rejuvenates areas like cheeks, jawline, eyebrows, and neck with minimal downtime.",
-        image: "/images/skin/thread.jpg",
+        image: threadLift,
         benefits: [
           "Instant Facial Lift – Visible results immediately, no surgery.",
           "Tailored Treatment – Targets areas like brows, jawline, neck, or mid-face.",
@@ -250,7 +266,7 @@ export const skinData = [
         category: "Laser Hair Reduction",
         description: "Safe, effective laser treatment for unwanted hair, specially calibrated for darker or tanned skin.",
         fullDesc: "Nd:YAG Laser Hair Reduction is a safe, effective treatment for unwanted hair, especially on darker or tanned skin. It targets follicles without harming surrounding tissue, offering permanent results with no pain or downtime. Best for thick, dark hair, suitable for both men and women.",
-        image: "/images/skin/laserhair.jpg",
+        image: ndYagLaser,
         benefits: [
           "Safe for tanned, darker, and sensitive skin.",
           "Long-Term Hair Reduction with each treatment.",
@@ -273,7 +289,7 @@ export const skinData = [
         category: "Laser Hair Reduction",
         description: "Advanced method targeting hair follicles with focused light and cooling technology.",
         fullDesc: "Diode Laser Hair Removal is an advanced, effective method for permanent hair reduction. It targets hair follicles with focused light while protecting the skin, using cooling technology for a safe and comfortable treatment suitable for all skin types.",
-        image: "/images/skin/diode.jpg",
+        image: diodeLaser,
         benefits: [
           "Particularly good for tanned, darker, or sensitive skin.",
           "Visible hair growth reduction with each treatment.",
@@ -296,7 +312,7 @@ export const skinData = [
         category: "Laser Hair Reduction",
         description: "USFDA-approved laser technology providing safe, effective hair reduction for Indian skin.",
         fullDesc: "Laser Hair Reduction targets hair follicles for long-term reduction while protecting the skin. At Adglo, USFDA-approved Diode and Nd:YAG lasers provide safe, effective results for Indian skin with minimal discomfort and no downtime.",
-        image: "/images/skin/laser.jpg",
+        image: laserHairReduction,
         benefits: [
           "Upper Lip & Lower Lip – Provides long-lasting smoothness.",
           "Chin – Manage hormonal or hereditary chin hair permanently.",
@@ -324,7 +340,7 @@ export const skinData = [
         category: "Clinical Hydration",
         description: "Patented treatment that cleanses, extracts, and hydrates skin using antioxidant serums.",
         fullDesc: "HydraFacial is a patented treatment that instantly brightens and refreshes the skin. Using vortex-suction, it removes impurities while infusing antioxidant serums, delivering visible results for all skin types without downtime.",
-        image: "/images/skin/hydrafacial.jpg",
+        image: hydraFacial,
         benefits: [
           "Cleanses, exfoliates, extracts, and hydrates for instant skin texture improvement.",
           "Smooths skin texture and tone, reducing wrinkles and pores.",
@@ -352,7 +368,7 @@ export const skinData = [
         category: "Wellness & Brightening",
         description: "Delivers powerful antioxidants directly into the bloodstream for enhanced wellness and skin clarity.",
         fullDesc: "Glutathione is a powerful antioxidant that detoxifies cells, supports immunity, and regulates melanin. IV Glutathione Therapy at Adglo delivers it directly into the bloodstream for enhanced wellness, skin clarity, and overall vitality—under clinical supervision, not as a fairness treatment.",
-        image: "/images/skin/gluta.jpg",
+        image: glutathioneTherapy,
         benefits: [
           "Brightens skin naturally by reducing pigmentation and evening out tone.",
           "Boosts immunity and liver function by supporting natural detox.",
