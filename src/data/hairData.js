@@ -1,3 +1,27 @@
+import fueHair from "../assets/Untitled-design-2025-07-14T110348.203-1.png";
+import basicFueHair from "../assets/Hair-Transplant.png";
+import percutaneousFueHair from "../assets/Percutaneous-FUE-1-1.png";
+import basicThinPoly from "../assets/Basic-Thin-Poly.png";
+import celebrityChoice from "../assets/Celebrity-Choice.png";
+import celebrityChoiceMirage from "../assets/Celebrity-Choice-Mirage-Hair-System.png";
+import fullLaceHairSystem from "../assets/Full-Lace-hair-system-1.png";
+import menFullCap from "../assets/Men-Full-Cap.png";
+import womenFullCap from "../assets/women-Full-Cap.png";
+import scalpMicropigmentation from "../assets/Scalp-Micropigmentation.png";
+import partialAlopecia from "../assets/PARTIAL-ALOPECIA.png";
+import totalAlopecia from "../assets/Total-Alopecia.png";
+import microblading from "../assets/Microblading.png";
+import eyelashLift from "../assets/Eyelash.png";
+import lipMicropigmentation from "../assets/Lip-Micropigmentation.png";
+import mesotherapy from "../assets/Hydrafacial-2.png";
+import prpProStemX27 from "../assets/IMG_1065-1024x683-1.png";
+import gelPrp from "../assets/IMG_1065-1024x683-1-1.png";
+import regenPro9 from "../assets/IMG_1077-1024x683-1.png";
+import oxygenLaserTherapy from "../assets/Oxygen-Laser-Therapy.png";
+import moustacheTransplant from "../assets/2e76c5727095ff6774527c8a4cd81c81.jpg";
+import beardTransplant from "../assets/BEARD-TRANSPLANT.png";
+import eyebrowTransplant from "../assets/Eyebrow-Transplant.png";
+
 export const hairData = [
   {
     category: "Restoration Plan",
@@ -58,7 +82,7 @@ export const hairData = [
         category: "Hair Restoration",
         description: "Minimally invasive technique that transplants individual follicles for natural-looking results.",
         fullDesc: "FUE (Follicular Unit Extraction) is a minimally invasive hair restoration technique that transplants individual follicles for natural-looking results. At AdGro Hair Clinic, Valliyur, we ensure precise placement, quick healing, and no visible scars.",
-        image: "/images/hair/fuehair.jpg",
+        image: fueHair,
         before: "/images/placeholders/before-after-1.jpg",
         after: "/images/placeholders/before-after-2.jpg",
         benefits: [
@@ -83,7 +107,7 @@ export const hairData = [
         category: "Hair Restoration",
         description: "Moves healthy follicles to thinning areas, creating a natural look with long-lasting results.",
         fullDesc: "Follicular Unit Extraction (FUE) is a minimally invasive hair transplant that moves healthy follicles to thinning areas, creating a natural look with long-lasting results and minimal downtime. It utilizes your own hair follicles ensuring natural texture and growth.",
-        image: "/images/hair/basichair.jpg",
+        image: basicFueHair,
         benefits: [
           "Natural, lasting results – implanted hairs act like your own.",
           "Quick, same-day procedure with a fast recovery.",
@@ -106,7 +130,7 @@ export const hairData = [
         category: "Hair Restoration",
         description: "Advanced technique using ultra-thin punches to harvest and implant follicles with precision.",
         fullDesc: "Percutaneous FUE is an advanced hair transplant technique using ultra-thin punches and micromotors to harvest and implant follicles with precision. It ensures natural, dense, and permanent results with minimal trauma. Perfect for advanced baldness or previous failed transplants.",
-        image: "/images/hair/percutaneousfue.jpg",
+        image: percutaneousFueHair,
         benefits: [
           "Precision placement for a natural look.",
           "Scar-Free, painless, no cuts or stitches.",
@@ -129,7 +153,7 @@ export const hairData = [
         category: "Facial Hair Transplant",
         description: "Minimally invasive procedure restoring thinning brows using your own hair follicles.",
         fullDesc: "Eyebrow transplant in Valliyur is a minimally invasive procedure that restores thinning or balding brows using your own hair follicles. Ideal for genetic, trauma, or condition-related hair loss, it creates natural, fuller eyebrows without daily makeup.",
-        image: "/images/hair/eyebrow.jpg",
+        image: eyebrowTransplant,
         benefits: [
           "Thicker, fuller brows—naturally bold, no makeup needed.",
           "Minimally invasive, scar-free, with minimal pain.",
@@ -152,7 +176,7 @@ export const hairData = [
         category: "Facial Hair Transplant",
         description: "Transplants healthy follicles to sparse beard areas for natural-looking growth.",
         fullDesc: "Beard transplantation is a cosmetic procedure where healthy hair follicles from the scalp are transplanted to sparse or patchy beard areas for natural-looking growth. At AdGro, we offer Standard Beard Transplant for mild thinning and Percutaneous Beard Transplant for sharper, high-density results.",
-        image: "/images/hair/beard.jpg",
+        image: beardTransplant,
         benefits: [
           "Encourages Beard Density – Thickens patchy spots.",
           "Minimally Invasive – No incisions or long recovery.",
@@ -175,7 +199,7 @@ export const hairData = [
         category: "Facial Hair Transplant",
         description: "Creates natural, fuller moustache growth using precision FUE.",
         fullDesc: "Moustache Hair Transplant uses FUE to transfer follicles from the scalp to the upper lip, creating natural, fuller growth. Ideal for sparse hair, scars, or those seeking a thicker moustache. Every transplant is customized to suit your facial structure.",
-        image: "/images/hair/moustache.jpg",
+        image: moustacheTransplant,
         benefits: [
           "Fixes Genetic or Hormonal Thinness in the Moustache Area.",
           "Covers Trauma or Scarring from Injury or Burns.",
@@ -203,7 +227,7 @@ export const hairData = [
         category: "Aesthetic Treatment",
         description: "Painless treatment creating the appearance of fuller hair by mimicking follicles.",
         fullDesc: "Scalp Micropigmentation (SMP) is a painless treatment that creates the appearance of fuller hair by mimicking follicles. Customized pigment and design provide a natural, confidence-boosting look for thinning or bald areas.",
-        image: "/images/hair/scalpmicro.jpg",
+        image: scalpMicropigmentation,
         benefits: [
           "Immediate Results – Visible improvement from the first session.",
           "Conceals Baldness – Blends with existing hair for a fuller look.",
@@ -226,7 +250,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Treats alopecia areata to stimulate dormant follicles and prevent further loss.",
         fullDesc: "At Advanced Grohair Clinic, Valliyur, we treat alopecia areata, which causes patchy hair loss on the scalp, beard, or brows. Early diagnosis and personalized, non-surgical treatments stimulate dormant follicles, prevent further loss, and improve hair thickness.",
-        image: "/images/hair/partial.jpg",
+        image: partialAlopecia,
         benefits: [
           "Addresses autoimmune-triggered alopecia areata.",
           "Utilizes PRP, microneedling, and LLLT to stimulate follicles.",
@@ -249,7 +273,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Evidence-based, non-surgical therapies that halt loss and reactivate follicles.",
         fullDesc: "We treat Alopecia Totalis, a rapid hair-loss condition, with evidence-based, non-surgical therapies that halt loss, reactivate dormant follicles, and restore a healthy scalp. Early care improves chances of regrowth and long-term results.",
-        image: "/images/hair/total.jpg",
+        image: totalAlopecia,
         benefits: [
           "Tailor-made treatment plans that evolve as your condition improves.",
           "Modern, painless procedures needing little to no downtime.",
@@ -272,7 +296,7 @@ export const hairData = [
         category: "Facial Aesthetics",
         description: "Enhances lashes safely with natural lifts or voluminous extensions.",
         fullDesc: "At AdGro, we enhance lashes safely and professionally. Lash lifts curl and lift your natural lashes for an instant, natural effect, while eyelash extensions add length and volume for fuller, glossy lashes that last weeks.",
-        image: "/images/hair/eyelash.jpg",
+        image: eyelashLift,
         benefits: [
           "Instant Gratification: Visible outcomes shortly after your session.",
           "Extended Wear: Enjoy long-lasting results for up to 2-3 months.",
@@ -295,7 +319,7 @@ export const hairData = [
         category: "Facial Aesthetics",
         description: "Semi-permanent procedure enhancing natural lip color, shape, and definition.",
         fullDesc: "Lip Micropigmentation is a semi-permanent procedure that enhances natural lip color, shape, and definition, corrects uneven pigmentation, and offers long-lasting beauty without daily lipstick.",
-        image: "/images/hair/lipmicro.jpg",
+        image: lipMicropigmentation,
         benefits: [
           "Customized for You – Pigment shades chosen to match your preference.",
           "Instant Results – Noticeable color and definition right after treatment.",
@@ -318,7 +342,7 @@ export const hairData = [
         category: "Facial Aesthetics",
         description: "Semi-permanent cosmetic tattoo that shapes and defines brows with natural hair strokes.",
         fullDesc: "Microblading is a semi-permanent cosmetic tattoo that shapes and defines brows with natural-looking hair strokes. Ideal for thin or asymmetrical brows, it offers a long-lasting alternative to daily makeup.",
-        image: "/images/hair/microblading.jpg",
+        image: microblading,
         benefits: [
           "Fixes thinning, sparse brows owing to over-plucking or genetics.",
           "Corrects uneven brow forms lacking symmetry.",
@@ -346,7 +370,7 @@ export const hairData = [
         category: "Hair Systems",
         description: "Modern hair replacement system with an ultra-thin polymer base.",
         fullDesc: "Basic Thin Poly is a modern hair replacement system with an ultra-thin polymer base that mimics the scalp for a natural, undetectable look. It offers a comfortable, long-lasting, non-surgical solution for fuller hair.",
-        image: "/images/hair/basicthin.jpg",
+        image: basicThinPoly,
         benefits: [
           "Customised to match scalp tone, hair color, and density.",
           "Bonded securely with medically approved, skin-safe adhesives.",
@@ -369,7 +393,7 @@ export const hairData = [
         category: "Hair Systems",
         description: "Premium non-surgical hair system offering exceptional realism and flexibility.",
         fullDesc: "Celebrity Choice is AdGroHair’s premium non-surgical hair system, offering exceptional realism, comfort, and flexibility. Custom-made with advanced technology, it delivers an undetectable hairline tailored to your lifestyle.",
-        image: "/images/hair/celebritychoice.jpg",
+        image: celebrityChoice,
         benefits: [
           "Natural look with invisible hairline and seamless scalp integration.",
           "Comfortable, durable, and made from breathable materials.",
@@ -392,7 +416,7 @@ export const hairData = [
         category: "Hair Systems",
         description: "Ultra-natural, nearly invisible hairline with a lightweight lace base.",
         fullDesc: "Celebrity Choice Mirage Hair System is a premium non-surgical hair replacement solution known for its ultra-natural, nearly invisible hairline. Featuring a lightweight lace base that blends seamlessly with the scalp.",
-        image: "/images/hair/celebritychoicemirage.jpg",
+        image: celebrityChoiceMirage,
         benefits: [
           "Unparalleled Realism – Offers the most realistic appearance.",
           "Lightweight and Unnoticeable – Breathable lace foundation.",
@@ -415,7 +439,7 @@ export const hairData = [
         category: "Hair Systems",
         description: "Premium, all-lace base delivering a natural, undetectable hairline.",
         fullDesc: "Full Lace Hair System is a premium, non-surgical hair replacement with an all-lace, lightweight base. It delivers a natural, undetectable hairline and is custom-designed for comfort, style, and ultimate realism.",
-        image: "/images/hair/fulllace.jpg",
+        image: fullLaceHairSystem,
         benefits: [
           "Durable – High-quality full lace system lasts for months.",
           "Light & Breathable – Made from premium lace for all-day comfort.",
@@ -438,7 +462,7 @@ export const hairData = [
         category: "Hair Systems",
         description: "Non-surgical hair replacement system for complete hair loss.",
         fullDesc: "Men Full Cap is a non-surgical hair replacement system for complete hair loss. Custom-molded to your head, it blends naturally with your hair, providing a full, youthful look comfortably without surgery.",
-        image: "/images/hair/menfullcap.jpg",
+        image: menFullCap,
         benefits: [
           "Durable, high-quality, and comfortable for daily wear.",
           "Pain-free, non-surgical solution for a natural full head of hair.",
@@ -461,7 +485,7 @@ export const hairData = [
         category: "Hair Systems",
         description: "Custom hair replacement for women with severe hair loss.",
         fullDesc: "Women Full Cap System is a custom hair replacement for women with severe hair loss. Tailor-fitted to the scalp, it provides natural, full coverage and versatile styling for a seamless, confident look.",
-        image: "/images/hair/womenfullcap.jpg",
+        image: womenFullCap,
         benefits: [
           "Custom-fit design for a natural, seamless feel at the hairline.",
           "Light, breathable, and secure for all-day comfort.",
@@ -489,7 +513,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Pain-free injections of vitamins to stimulate blood flow and hair roots.",
         fullDesc: "Mesotherapy is a pain-free hair restoration treatment that injects vitamins, minerals, and growth factors into the scalp to stimulate blood flow, nourish hair roots, and promote regrowth. Ideal for thinning hair and early hair loss.",
-        image: "/images/hair/mesotherapy.jpg",
+        image: mesotherapy,
         benefits: [
           "Promotes hair growth by activating follicles.",
           "Reduces breakage and thinning.",
@@ -512,7 +536,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Advanced PRP therapy fortified with stem cells for accelerated regrowth.",
         fullDesc: "PRP Pro+ is a non-drug therapy using your blood’s platelets to promote hair growth. Platelet-rich plasma is extracted and injected into thinning areas, stimulating follicle regeneration, healing, and natural hair growth.",
-        image: "/images/hair/prp pro.jpg",
+        image: prpProStemX27,
         before: "/images/placeholders/before-after-1.jpg",
         after: "/images/placeholders/before-after-2.jpg",
         benefits: [
@@ -537,7 +561,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Advanced GFC therapy activating dormant follicles using growth factors.",
         fullDesc: "Regen Pro 9 is an advanced GFC therapy that activates dormant hair follicles, reduces hair loss, and enhances transplant results using growth factors from your blood for natural, safe, and minimally invasive hair regeneration.",
-        image: "/images/hair/regenpro.jpg",
+        image: regenPro9,
         benefits: [
           "WBC & RBC-Free – Reduces scalp irritation and inflammation.",
           "Enhanced Transplant Results: Improves follicle survival.",
@@ -560,7 +584,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Advanced PRP therapy in gel form for sustained growth factor release.",
         fullDesc: "Gel PRP is an advanced PRP therapy in gel form that boosts collagen, repairs tissue, and strengthens hair follicles. Using a fibrin matrix, it supports sustained growth factor release, promoting hair regeneration safely.",
-        image: "/images/hair/gel prp.jpg",
+        image: gelPrp,
         benefits: [
           "Longer Growth Factor Release for sustained nourishment.",
           "Fibrin Scaffold supports cellular repair.",
@@ -588,7 +612,7 @@ export const hairData = [
         category: "Clinical Care",
         description: "Non-invasive therapy combining LLLT and oxygenation for denser hair.",
         fullDesc: "Oxygen Laser Therapy is a non-invasive, painless hair restoration treatment combining LLLT and oxygenation. It boosts scalp circulation, delivers nutrients, reduces inflammation, and awakens dormant follicles for healthier hair.",
-        image: "/images/hair/sol-1.jpg",
+        image: oxygenLaserTherapy,
         benefits: [
           "No Downtime – Resume activities immediately.",
           "Reduces Dandruff – Promotes a healthier scalp.",
