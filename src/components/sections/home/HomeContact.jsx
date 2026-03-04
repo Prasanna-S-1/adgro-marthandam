@@ -14,23 +14,23 @@ const HomeContact = () => {
     }, 1500);
   };
 
-  // --- ANIMATION VARIANTS ---
+  // --- ULTRA-PREMIUM ANIMATION PHYSICS ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
   };
 
   const formVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+    hidden: { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
   };
 
   const contactDetails = [
@@ -53,114 +53,124 @@ const HomeContact = () => {
   ];
 
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-[#FCF8F8] overflow-hidden" id="book">
-      {/* Subtle glow orbs */}
-      <div className="glow-orb-red w-[400px] h-[400px] -top-32 -right-32 z-0" />
+    <section className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden selection:bg-[#B70303] selection:text-white" id="book">
+      
+      {/* Luxury Ambient Glow */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#B70303]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-16 md:gap-24">
 
-        {/* --- LEFT COLUMN: CONTACT INFORMATION --- */}
-        <div className="w-full lg:w-1/2 flex justify-center">
+        {/* =========================================
+            LEFT COLUMN: EDITORIAL CONTACT INFO
+        ========================================= */}
+        <div className="w-full lg:w-5/12 flex justify-center lg:justify-start">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col items-center text-center gap-10 max-w-md"
+            className="flex flex-col text-center lg:text-left gap-10 max-w-md w-full"
           >
-            {contactDetails.map((item, index) => (
-              <motion.div key={index} variants={itemVariants} className="flex flex-col items-center">
-                <h3 className="text-2xl md:text-3xl font-serif text-brand-dark font-bold mb-4">
-                  {index === 0 ? (
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-brand-red">{item.title}</span>
-                  ) : item.title}
-                </h3>
-                <p className="text-gray-600 font-sans leading-relaxed text-sm md:text-base">
-                  {item.value}
-                </p>
-              </motion.div>
-            ))}
+            
+            <motion.div variants={itemVariants}>
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
+                <div className="w-12 h-[2px] bg-[#B70303]" />
+                <span className="text-[#B70303] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px]">
+                  Get In Touch
+                </span>
+                <div className="w-12 h-[2px] bg-[#B70303] lg:hidden" />
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white font-bold tracking-tight mb-4">
+                Contact <span className="italic text-gray-500 font-light">Clinic.</span>
+              </h2>
+            </motion.div>
+
+            <div className="flex flex-col gap-8 md:gap-10">
+              {contactDetails.map((item, index) => (
+                <motion.div key={index} variants={itemVariants} className="flex flex-col border-l-[2px] border-white/10 pl-6 group hover:border-[#B70303] transition-colors duration-500">
+                  <h3 className="text-xs md:text-sm font-bold text-[#B70303] uppercase tracking-[0.2em] mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 font-sans leading-relaxed text-sm md:text-base font-light group-hover:text-white transition-colors duration-300">
+                    {item.value}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
           </motion.div>
         </div>
 
-        {/* --- RIGHT COLUMN: GLASSMORPHIC CONTACT FORM --- */}
+        {/* =========================================
+            RIGHT COLUMN: PREMIUM BOOKING FORM
+        ========================================= */}
         <motion.div
           variants={formVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="w-full lg:w-1/2"
+          className="w-full lg:w-7/12 relative"
         >
-          <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-8 md:p-12 shadow-glass border border-white/60 overflow-hidden">
-            {/* Subtle gradient border */}
-            <div className="absolute inset-0 rounded-2xl gradient-border pointer-events-none" />
+          {/* Architectural Background Offset */}
+          <div className="absolute inset-0 border-[2px] border-[#B70303]/30 rounded-[2rem] md:rounded-[3rem] translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 -z-10" />
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
+          <div className="relative bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 shadow-[0_30px_60px_rgba(0,0,0,0.5)] border-[6px] border-white/10 overflow-hidden group">
+            
+            <h3 className="text-3xl md:text-4xl font-serif font-bold text-[#050505] mb-2 tracking-tight">Request Callback</h3>
+            <p className="text-gray-400 text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-10 md:mb-12">Priority Consultation Slot</p>
 
-              {/* Name Field */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm font-bold text-brand-dark">
-                  Name <span className="text-brand-red">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  placeholder="Enter full name"
-                  className="w-full bg-white/50 border border-gray-200 rounded-xl py-3.5 px-5 text-gray-700 text-sm focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 backdrop-blur-sm"
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8 md:gap-10 relative z-10">
 
-              {/* Email Field */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm font-bold text-brand-dark">
-                  Email <span className="text-brand-red">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  placeholder="Enter email address"
-                  className="w-full bg-white/50 border border-gray-200 rounded-xl py-3.5 px-5 text-gray-700 text-sm focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 backdrop-blur-sm"
-                />
+              <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+                {/* Name Field - Floating Underline Style */}
+                <div className="relative z-0 w-full group">
+                  <input type="text" id="name" required placeholder=" " className="block py-3 px-0 w-full text-base md:text-lg text-[#050505] bg-transparent border-0 border-b-[2px] border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-[#B70303] peer transition-colors" />
+                  <label htmlFor="name" className="absolute text-xs md:text-sm text-gray-400 tracking-[0.2em] font-bold uppercase duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-[#B70303] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Full Name *
+                  </label>
+                </div>
+
+                {/* Email Field */}
+                <div className="relative z-0 w-full group">
+                  <input type="email" id="email" required placeholder=" " className="block py-3 px-0 w-full text-base md:text-lg text-[#050505] bg-transparent border-0 border-b-[2px] border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-[#B70303] peer transition-colors" />
+                  <label htmlFor="email" className="absolute text-xs md:text-sm text-gray-400 tracking-[0.2em] font-bold uppercase duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-[#B70303] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Email Address *
+                  </label>
+                </div>
               </div>
 
               {/* Phone Field */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="phone" className="text-sm font-bold text-brand-dark">
-                  Phone Number <span className="text-brand-red">*</span>
+              <div className="relative z-0 w-full group">
+                <input type="tel" id="phone" required placeholder=" " className="block py-3 px-0 w-full text-base md:text-lg text-[#050505] bg-transparent border-0 border-b-[2px] border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-[#B70303] peer transition-colors" />
+                <label htmlFor="phone" className="absolute text-xs md:text-sm text-gray-400 tracking-[0.2em] font-bold uppercase duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-[#B70303] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                  Phone Number *
                 </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  required
-                  placeholder="Enter phone number"
-                  className="w-full bg-white/50 border border-gray-200 rounded-xl py-3.5 px-5 text-gray-700 text-sm focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 backdrop-blur-sm"
-                />
               </div>
 
               {/* Message Field */}
-              <div className="flex flex-col gap-2 mb-2">
-                <label htmlFor="message" className="text-sm font-bold text-brand-dark">
-                  Message
+              <div className="relative z-0 w-full group pt-4">
+                <textarea id="message" rows="3" placeholder=" " className="block py-3 px-0 w-full text-base md:text-lg text-[#050505] bg-transparent border-0 border-b-[2px] border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-[#B70303] peer transition-colors resize-none"></textarea>
+                <label htmlFor="message" className="absolute text-xs md:text-sm text-gray-400 tracking-[0.2em] font-bold uppercase duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-[#B70303] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                  Special Requirements
                 </label>
-                <textarea
-                  id="message"
-                  rows="4"
-                  placeholder="Enter your answer"
-                  className="w-full bg-white/50 border border-gray-200 rounded-xl py-3.5 px-5 text-gray-700 text-sm focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 backdrop-blur-sm resize-y"
-                ></textarea>
               </div>
 
-              {/* Submit Button — Animated Gradient */}
-              <div>
-                <button
+              {/* Submit Button */}
+              <div className="pt-6">
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-gradient py-3.5 px-10 rounded-full shadow-glow-red disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="group/btn relative w-full md:w-auto px-12 py-5 md:py-6 bg-[#050505] text-white rounded-[1rem] font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs overflow-hidden transition-all duration-500 shadow-[0_10px_20px_rgba(5,5,5,0.2)] hover:shadow-[0_15px_30px_rgba(5,5,5,0.3)] disabled:opacity-70 disabled:cursor-not-allowed border-none"
                 >
-                  <span className="relative z-10">{isSubmitting ? 'Submitting...' : 'Submit'}</span>
-                </button>
+                  <span className="relative z-10 transition-colors duration-500">
+                    {isSubmitting ? 'Processing...' : 'Confirm Slot Request'}
+                  </span>
+                  {!isSubmitting && (
+                    <div className="absolute inset-0 bg-[#B70303] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-in-out" />
+                  )}
+                </motion.button>
               </div>
 
             </form>

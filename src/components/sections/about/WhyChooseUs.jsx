@@ -3,125 +3,134 @@ import { motion } from 'framer-motion';
 import { ClipboardList, ShieldCheck, FileText, Sparkles } from 'lucide-react';
 
 const WhyChooseUs = () => {
-  // --- ANIMATION VARIANTS ---
+  // --- ULTRA-PREMIUM ANIMATION PHYSICS ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, x: -40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } 
+    }
   };
 
   // --- FEATURES DATA ---
   const features = [
     {
-      icon: <ClipboardList size={32} strokeWidth={1.5} />,
+      icon: <ClipboardList size={32} strokeWidth={1.2} />,
       title: "Expert Consultation",
-      description: "Every treatment starts with in-depth analysis by specialists."
+      description: "Every treatment pathway begins with an exhaustive digital and clinical analysis by our leading specialists."
     },
     {
-      icon: <ShieldCheck size={32} strokeWidth={1.5} />,
-      title: "FDA-Approved Equipment",
-      description: "Advanced, safe, globally approved equipment."
+      icon: <ShieldCheck size={32} strokeWidth={1.2} />,
+      title: "FDA-Approved Systems",
+      description: "We utilize exclusively USFDA-cleared medical equipment, ensuring global safety standards for every procedure."
     },
     {
-      icon: <FileText size={32} strokeWidth={1.5} />,
-      title: "Personalized Care",
-      description: "Tailored solutions designed for your unique needs."
+      icon: <FileText size={32} strokeWidth={1.2} />,
+      title: "Bespoke Care",
+      description: "No generic protocols. Every solution is mathematically tailored to your unique biological and aesthetic goals."
     },
     {
-      icon: <Sparkles size={32} strokeWidth={1.5} />,
-      title: "Visible Results",
-      description: "Rediscover your glow and confidence with our trusted care."
+      icon: <Sparkles size={32} strokeWidth={1.2} />,
+      title: "Visible Transformation",
+      description: "Witness measurable results backed by clinical evidence, restoring your natural confidence and glow."
     }
   ];
 
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-[#1a1a1a] overflow-hidden noise-overlay">
+    <section className="relative w-full py-24 md:py-36 bg-[#050505] overflow-hidden selection:bg-[#B70303] selection:text-white">
 
-      {/* Animated Glow Orbs */}
-      <div className="glow-orb-red w-[500px] h-[500px] top-0 right-0 z-0" />
-      <div className="glow-orb-gold w-[300px] h-[300px] bottom-0 left-0 z-0" />
+      {/* Luxury Ambient Glows (Strict Brand Colors) */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#B70303]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-[0.9fr_1.1fr] gap-16 md:gap-24 items-center">
 
-          {/* --- LEFT COLUMN: TEXT CONTENT --- */}
+          {/* =========================================
+              LEFT COLUMN: EDITORIAL TEXT
+          ========================================= */}
           <motion.div
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="w-full lg:w-2/5 flex flex-col items-start"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full flex flex-col items-start"
           >
-            {/* Subtitle */}
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-gray-400 font-sans text-sm tracking-wide">
-                Your confidence deserves expert care.
+            {/* Minimalist Subtitle */}
+            <div className="flex items-center gap-4 mb-6 md:mb-8">
+              <motion.span 
+                initial={{ width: 0 }} 
+                whileInView={{ width: "3rem" }} 
+                transition={{ duration: 1.5, delay: 0.5 }}
+                className="h-[2px] bg-[#B70303]" 
+              />
+              <span className="text-[#B70303] font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">
+                Clinical Excellence
               </span>
             </div>
 
-            {/* Main Title */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white font-bold leading-tight mb-6">
-              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-brand-gold">Us</span>
+            {/* Massive Serif Title */}
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold leading-[1.1] tracking-tight mb-8">
+              Why <br className="hidden lg:block" />
+              <span className="italic font-light text-gray-500">Choice Matters.</span>
             </h2>
 
-            {/* Gradient Divider */}
-            <div className="w-16 h-[2px] gradient-line mb-8 rounded-full" />
-
-            {/* Description */}
-            <p className="text-gray-400 font-sans text-base md:text-lg leading-relaxed">
-              At <strong className="text-white font-medium">Advanced GroHair &amp; GloSkin</strong>, we don't just offer treatments — we deliver transformations.
+            {/* High-Contrast Description */}
+            <p className="text-gray-400 font-sans text-lg md:text-xl leading-relaxed font-light max-w-md">
+              At <strong className="text-white font-medium">Advanced GroHair &amp; GloSkin</strong>, we don't just offer treatments — we engineer complete clinical transformations.
             </p>
           </motion.div>
 
-          {/* --- RIGHT COLUMN: GLASSMORPHIC FEATURE CARDS --- */}
+          {/* =========================================
+              RIGHT COLUMN: ARCHITECTURAL FEATURE CARDS
+          ========================================= */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="w-full lg:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-6"
+            className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
           >
             {features.map((feature, index) => (
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="group relative glass-card-dark p-8 lg:p-10 hover:border-brand-red/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-elevated flex flex-col items-center sm:items-start text-center sm:text-left"
+                whileHover={{ y: -8 }}
+                className="group relative bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-[2rem] border border-white/10 hover:border-[#B70303]/40 transition-all duration-500 flex flex-col items-start text-left overflow-hidden"
               >
-                {/* Animated gradient corner accent on hover */}
-                <div className="absolute top-0 right-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-bl from-brand-red/20 via-brand-gold/10 to-transparent" />
-                </div>
+                {/* Magnetic Hover Red Edge */}
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#B70303] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top shadow-[0_0_15px_#B70303]" />
 
-                {/* Icon with glow halo */}
-                <div className="relative mb-6 text-gray-300 group-hover:text-brand-red group-hover:scale-110 transition-all duration-500 origin-left">
+                {/* Minimalist Icon */}
+                <div className="relative mb-8 text-[#B70303] transition-transform duration-500 group-hover:scale-110">
                   {feature.icon}
-                  {/* Glow halo behind icon */}
-                  <div className="absolute inset-[-8px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: 'radial-gradient(circle, rgba(211, 47, 47, 0.15), transparent 70%)' }}
-                  />
+                  {/* Subtle pulsing glow behind icon on hover */}
+                  <div className="absolute inset-0 bg-[#B70303]/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl font-serif text-white font-bold mb-3">
+                {/* Editorial Title */}
+                <h3 className="text-xl md:text-2xl font-serif text-white font-bold mb-4 tracking-tight group-hover:text-[#B70303] transition-colors duration-300">
                   {feature.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-gray-400 font-sans text-sm leading-relaxed">
+                {/* Refined Description */}
+                <p className="text-gray-500 font-sans text-sm md:text-base leading-relaxed font-light group-hover:text-gray-300 transition-colors duration-500">
                   {feature.description}
                 </p>
+
+                {/* Ghost Detail in background */}
+                <span className="absolute -bottom-4 -right-2 text-6xl font-serif font-black text-white/[0.02] group-hover:text-[#B70303]/[0.05] transition-colors duration-500 select-none pointer-events-none">
+                  0{index + 1}
+                </span>
               </motion.div>
             ))}
           </motion.div>

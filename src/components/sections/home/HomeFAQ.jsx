@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 // --- EXACT FAQ DATA ---
 const faqData = [
@@ -25,7 +25,7 @@ const faqData = [
 const HomeFAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // --- ANIMATION VARIANTS ---
+  // --- ULTRA-PREMIUM ANIMATION PHYSICS ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -35,45 +35,52 @@ const HomeFAQ = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    }
   };
 
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-white overflow-hidden">
-      {/* Subtle glow orb */}
-      <div className="glow-orb-gold w-[400px] h-[400px] -bottom-32 -right-32 z-0" />
+    <section className="relative w-full py-24 md:py-32 bg-[#FAFAFA] overflow-hidden selection:bg-[#B70303] selection:text-white">
+      
+      {/* Subtle Brand Watermark Background */}
+      <div className="absolute -right-40 top-1/2 -translate-y-1/2 text-[300px] font-serif font-black text-gray-100 opacity-40 select-none pointer-events-none tracking-tighter leading-none mix-blend-multiply hidden lg:block z-0">
+        FAQ
+      </div>
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
 
-        {/* --- SECTION HEADER --- */}
+        {/* --- EDITORIAL HEADER --- */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16 md:mb-24"
         >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-10 h-[2px] gradient-line" />
-            <span className="text-brand-gold font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">
+          <div className="flex items-center justify-center gap-4 mb-4 md:mb-6">
+            <div className="w-12 h-[2px] bg-[#B70303]" />
+            <span className="text-[#B70303] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px]">
               Clear Your Doubts
             </span>
-            <div className="w-10 h-[2px] gradient-line" />
+            <div className="w-12 h-[2px] bg-[#B70303]" />
           </div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-brand-dark font-bold">
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-brand-gold italic font-light">Questions</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#050505] font-bold tracking-tight">
+            Patient <span className="italic text-gray-400 font-light">Inquiries.</span>
           </h2>
         </motion.div>
 
-        {/* --- ACCORDION LIST --- */}
+        {/* --- LUXURY ACCORDION LIST --- */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="flex flex-col gap-4"
+          className="flex flex-col border-t-[2px] border-[#050505]"
         >
           {faqData.map((faq, index) => {
             const isOpen = activeIndex === index;
@@ -82,34 +89,29 @@ const HomeFAQ = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`relative rounded-xl overflow-hidden transition-all duration-500 ${isOpen
-                    ? 'bg-brand-red/[0.02] shadow-glass'
-                    : 'bg-white hover:shadow-glass border border-gray-100'
-                  }`}
+                className={`border-b border-gray-200 transition-all duration-500 ${
+                  isOpen ? 'bg-white shadow-[0_20px_40px_rgba(0,0,0,0.03)] my-4 px-2 md:px-4 rounded-2xl border-transparent' : 'bg-transparent'
+                }`}
               >
-                {/* Gradient left border when active */}
-                {isOpen && (
-                  <div className="absolute top-0 left-0 w-[3px] h-full gradient-line-v rounded-l-xl" />
-                )}
-
                 {/* Accordion Toggle Button */}
                 <button
                   onClick={() => setActiveIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
+                  className={`w-full flex items-center justify-between py-6 md:py-8 text-left focus:outline-none group ${!isOpen && 'px-2 md:px-4'}`}
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-sans font-bold text-base md:text-lg pr-8 transition-colors duration-300 ${isOpen ? 'text-brand-red' : 'text-brand-dark'}`}>
+                  <span className={`font-serif font-bold text-lg md:text-2xl lg:text-3xl pr-6 md:pr-12 transition-colors duration-500 leading-snug ${
+                    isOpen ? 'text-[#B70303]' : 'text-[#050505] group-hover:text-[#B70303]'
+                  }`}>
                     {faq.question}
                   </span>
 
-                  {/* Gradient Rotating Icon */}
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen
-                      ? 'text-white rotate-45 shadow-glow-red'
-                      : 'bg-gray-100 text-brand-dark'
-                    }`}
-                    style={isOpen ? { background: 'linear-gradient(135deg, var(--color-brand-red), var(--color-brand-gold))' } : {}}
-                  >
-                    <Plus size={16} />
+                  {/* Elegant Icon Transition */}
+                  <div className={`flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border transition-all duration-500 flex items-center justify-center ${
+                    isOpen 
+                      ? 'bg-[#B70303] border-[#B70303] text-white shadow-[0_0_15px_rgba(183,3,3,0.3)] rotate-180' 
+                      : 'border-gray-300 text-gray-400 group-hover:border-[#050505] group-hover:text-[#050505]'
+                  }`}>
+                    {isOpen ? <Minus size={20} strokeWidth={1.5} /> : <Plus size={20} strokeWidth={1.5} />}
                   </div>
                 </button>
 
@@ -120,12 +122,13 @@ const HomeFAQ = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 md:px-8 pb-6 md:pb-8 text-gray-600 font-sans text-sm md:text-base leading-relaxed">
-                        <div className="w-full h-px bg-gradient-to-r from-brand-red/20 via-brand-gold/20 to-transparent mb-6" />
-                        {faq.answer}
+                      <div className="px-2 md:px-4 pb-8 md:pb-10 pt-2">
+                        <p className="text-gray-600 font-sans text-base md:text-lg leading-relaxed font-light pl-4 md:pl-6 border-l-[2px] border-[#B70303]/30 italic max-w-3xl">
+                          {faq.answer}
+                        </p>
                       </div>
                     </motion.div>
                   )}
