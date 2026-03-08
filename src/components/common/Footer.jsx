@@ -1,33 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Instagram, Facebook, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+
+// --- ASSET IMPORTS ---
+import logoMarthandam from '../../assets/logo-marthandam.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // ROUTING ARCHITECTURE - Mapped to Marthandam Slug Logic
+  // --- SMART ROUTING: Navigates to main category page and triggers the filter ---
   const footerLinks = {
     hair: [
-      { name: "Restoration Plan", link: "/hair/restoration-plan" },
-      { name: "Retention Plan", link: "/hair/retention-plan" },
-      { name: "Non-Invasive Treatment", link: "/hair/non-invasive-treatment" },
-      { name: "Super Specialty", link: "/hair/super-specialty" },
-      { name: "Cosmetic Replacement", link: "/hair/cosmetic-hair-replacement" }
+      { name: "Restoration Plan", link: "/hair", filterName: "Restoration Plan" },
+      { name: "Retention Plan", link: "/hair", filterName: "Retention Plan" },
+      { name: "Non-Invasive Treatment", link: "/hair", filterName: "Non-Invasive Treatment" },
+      { name: "Super Specialty", link: "/hair", filterName: "Super Specialty" },
+      { name: "Cosmetic Replacement", link: "/hair", filterName: "Cosmetic Replacement" }
     ],
     skin: [
-      { name: "Skin Brightening", link: "/skin/skin-brightening-pigmentation" },
-      { name: "Hair Reduction", link: "/skin/permanent-hair-reduction" },
-      { name: "Anti-Aging / Ageless", link: "/skin/ageless" },
-      { name: "Dull Skin Recovery", link: "/skin/dry-dull-skin" },
-      { name: "Premium IV Therapy", link: "/skin/iv-therapy" }
-    ],
-    quick: [
-      { name: "Home", link: "/" },
-      { name: "About Clinic", link: "/about" },
-      { name: "Hair Directory", link: "/hair" },
-      { name: "Skin Directory", link: "/skin" },
-      { name: "Contact Hub", link: "/contact" }
+      { name: "Skin Brightening", link: "/skin", filterName: "Skin Brightening" },
+      { name: "Hair Reduction", link: "/skin", filterName: "Hair Reduction" },
+      { name: "Anti-Aging / Ageless", link: "/skin", filterName: "Ageless" },
+      { name: "Dull Skin Recovery", link: "/skin", filterName: "Dry Dull Skin" },
+      { name: "Premium IV Therapy", link: "/skin", filterName: "IV Therapy" }
     ]
   };
 
@@ -50,17 +45,14 @@ const Footer = () => {
           <div className="lg:col-span-4 xl:col-span-4 pr-0 lg:pr-12">
             <Link 
               to="/" 
-              className="inline-flex flex-col items-start mb-8 group transition-all duration-700"
+              className="inline-flex flex-col items-start mb-10 group transition-all duration-700"
             >
+              {/* Logo with Pure White Filter and Bloom Effect */}
               <img 
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=150&auto=format&fit=crop" 
+                src={logoMarthandam}
                 alt="AdGro Marthandam Logo" 
-                className="h-16 md:h-20 lg:h-24 object-contain filter brightness-0 invert group-hover:scale-105 transition-transform duration-700" 
+                className="h-12 md:h-14 lg:h-16 w-auto object-contain filter brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]" 
               />
-              <div className="mt-4">
-                <h2 className="text-xl font-serif font-bold tracking-tight">AdGro<span className="text-[#B70303]">Hair</span> & GloSkin</h2>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gray-500 font-bold">Marthandam Branch</p>
-              </div>
             </Link>
 
             <p className="text-gray-400 text-sm leading-relaxed mb-10 max-w-sm font-light">
@@ -82,7 +74,7 @@ const Footer = () => {
             <ul className="space-y-5">
               {footerLinks.hair.map((item, idx) => (
                 <li key={idx}>
-                  <FooterLink to={item.link} name={item.name} />
+                  <FooterLink to={item.link} name={item.name} filterState={item.filterName} />
                 </li>
               ))}
             </ul>
@@ -96,7 +88,7 @@ const Footer = () => {
             <ul className="space-y-5">
               {footerLinks.skin.map((item, idx) => (
                 <li key={idx}>
-                  <FooterLink to={item.link} name={item.name} />
+                  <FooterLink to={item.link} name={item.name} filterState={item.filterName} />
                 </li>
               ))}
             </ul>
@@ -160,13 +152,16 @@ const Footer = () => {
 
 /* --- SUB-COMPONENTS --- */
 
-const FooterLink = ({ to, name }) => (
+const FooterLink = ({ to, name, filterState }) => (
   <Link 
     to={to} 
-    className="text-gray-400 text-sm hover:text-white transition-all duration-500 flex items-center gap-3 group whitespace-nowrap"
+    state={{ filter: filterState }} // Passes the specific category filter to the destination page
+    className="text-gray-400 text-[13px] hover:text-white transition-all duration-500 flex items-center gap-3 group"
   >
-    <div className="w-1.5 h-1.5 rounded-full bg-[#B70303] scale-0 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_8px_#B70303]" />
-    <span className="transform transition-all duration-500 group-hover:translate-x-1 font-light tracking-wide">{name}</span>
+    <div className="w-1.5 h-1.5 rounded-full bg-[#B70303] scale-0 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_8px_#B70303] flex-shrink-0" />
+    <span className="transform transition-all duration-500 group-hover:translate-x-1 font-light tracking-wide line-clamp-1">
+      {name}
+    </span>
   </Link>
 );
 
@@ -190,7 +185,7 @@ const SocialIcon = ({ href, icon }) => (
     target="_blank"
     rel="noreferrer"
     className="w-11 h-11 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-white
-               hover:bg-[#B70303] hover:border-[#B70303] hover:shadow-[0_0_20px_rgba(183,3,3,0.4)] transition-all duration-500 transform hover:-translate-y-1.5"
+                hover:bg-[#B70303] hover:border-[#B70303] hover:shadow-[0_0_20px_rgba(183,3,3,0.4)] transition-all duration-500 transform hover:-translate-y-1.5"
   >
     {icon}
   </a>

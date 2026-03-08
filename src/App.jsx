@@ -1,12 +1,12 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
-// --- LAYOUT IMPORT ---
-// This wraps all pages with our premium Navbar, Footer, and scroll progress bar
+// --- COMPONENT IMPORTS ---
 import Layout from './components/common/Layout';
+import Preloader from './components/common/Preloader'; // Ensure this matches your file path
 
 // --- LAZY LOADED PAGES ---
-// This ensures premium performance by only loading pages when requested, keeping the initial load lightning fast
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -15,67 +15,74 @@ const TreatmentDetail = lazy(() => import('./pages/TreatmentDetail'));
 
 /**
  * GLOBAL SCROLL TO TOP UTILITY
- * Ensures that navigating to a new page always starts at the absolute top smoothly.
  */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
-
   return null;
 };
 
 /**
- * PREMIUM LOADING FALLBACK
- * Shown briefly while lazy-loaded chunks are being fetched.
+ * PREMIUM PAGE LOADER (Fallback for Lazy Loading)
  */
 const PageLoader = () => (
   <div className="h-[70vh] w-full flex items-center justify-center bg-transparent">
     <div className="flex flex-col items-center gap-4">
-      {/* Premium Red Spinner */}
       <div className="w-12 h-12 border-4 border-gray-100 border-t-[#B70303] rounded-full animate-spin" />
-      <p className="text-brand-dark font-bold text-[10px] uppercase tracking-widest animate-pulse">
-        Loading...
+      <p className="text-[#050505] font-bold text-[10px] uppercase tracking-widest animate-pulse">
+        Initializing...
       </p>
     </div>
   </div>
 );
 
 function App() {
+  const [siteLoading, setSiteLoading] = useState(true);
+
+  // --- PRELOADER LOGIC ---
+  useEffect(() => {
+    // This timer controls how long the Marthandam branding is displayed
+    const timer = setTimeout(() => {
+      setSiteLoading(false);
+    }, 2500); // 2.5 seconds for a premium feel
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
       
-      {/* Layout wraps everything to provide global Navbar and Footer */}
-      <Layout>
-        
-        {/* Suspense handles the loading state of our lazy pages */}
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            
-            {/* --- STATIC ROUTES --- */}
-            {/* These must be defined BEFORE dynamic routes to prevent conflicts */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+      {/* 1. INITIAL BRAND PRELOADER */}
+      <AnimatePresence mode="wait">
+        {siteLoading && <Preloader key="site-loader" />}
+      </AnimatePresence>
 
-            {/* --- DYNAMIC ROUTES (The Master Engine) --- */}
-            
-            {/* 1. Category Hub (Catches URLs like /hair-treatments or /skin-treatments) */}
-            <Route path="/:category" element={<CategoryView />} />
-            
-            {/* 2. Specific Treatment Detail (Catches URLs like /hair-treatments/titanium-fue) */}
-            <Route path="/:category/:id" element={<TreatmentDetail />} />
+      {/* 2. MAIN APPLICATION CONTENT */}
+      {!siteLoading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                {/* --- STATIC ROUTES --- */}
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
 
-            {/* 404 FALLBACK (Optional but recommended) */}
-            {/* <Route path="*" element={<NotFound />} /> */}
-            
-          </Routes>
-        </Suspense>
-
-      </Layout>
+                {/* --- DYNAMIC ROUTES --- */}
+                <Route path="/:category" element={<CategoryView />} />
+                <Route path="/:category/:id" element={<TreatmentDetail />} />
+              </Routes>
+            </Suspense>
+          </Layout>
+        </motion.div>
+      )}
     </Router>
   );
 }

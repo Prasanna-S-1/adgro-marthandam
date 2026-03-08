@@ -1,35 +1,36 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ArrowRight, Sparkles, SlidersHorizontal } from 'lucide-react';
 
-// Data Imports
+// --- DATA IMPORTS ---
 import { hairData } from '../data/hairData';
 import { skinData } from '../data/skinData';
 
-const CategoryView = () => {
-  const { category } = useParams();
-  const navigate = useNavigate();
+// --- CONFIGURATION ---
+const BRANCH_NAME = "Your Branch Name"; 
+const HAIR_PATH = "hair-treatments";
+const SKIN_PATH = "skin-treatments";
 
+const CategoryView = () => {
+  const { category } = useParams(); 
+  const navigate = useNavigate();
+  
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
 
-  // --- 1. SMART DATA RESOLUTION & FLATTENING ---
-  // We determine if it's hair or skin, then flatten the data just in case 
-  // you are using a mix of nested data and flat arrays.
+  // --- DATA RESOLUTION ---
   const isHair = category?.toLowerCase().includes('hair');
-  
+  const parentPath = isHair ? HAIR_PATH : SKIN_PATH;
+
   const processedData = useMemo(() => {
     const rawData = isHair ? hairData : skinData;
     if (!rawData) return [];
 
-    // Flatten data: If it has subData, extract it. Otherwise, return the item.
     return rawData.reduce((acc, curr) => {
       if (curr.subData) {
-        // Map over subData and attach the parent category name for filtering
         const processedSub = curr.subData.map(sub => ({
           ...sub,
-          filterCategory: curr.category || 'General'
+          filterCategory: curr.category || (isHair ? 'Hair Solutions' : 'Skin Solutions')
         }));
         return [...acc, ...processedSub];
       }
@@ -37,218 +38,184 @@ const CategoryView = () => {
     }, []);
   }, [isHair]);
 
-  // --- 2. DYNAMIC CATEGORY EXTRACTION ---
-  // Automatically creates the filter buttons based on whatever is actually in your data
   const filterTabs = useMemo(() => {
     const uniqueCats = new Set(processedData.map(item => item.filterCategory));
     return ['all', ...Array.from(uniqueCats)];
   }, [processedData]);
 
-  // Filter the grid based on the active button
   const filteredGrid = activeFilter === 'all' 
     ? processedData 
     : processedData.filter(item => item.filterCategory === activeFilter);
 
-  // --- 3. PAGE SETUP ---
+  // --- PAGE SETUP ---
   useEffect(() => {
     setLoading(true);
-    if (!hairData && !skinData) {
-      navigate('/not-found');
-      return;
-    }
-    // Simulate a tiny load for the premium spinner effect
     const timer = setTimeout(() => {
       setLoading(false);
-      document.title = `${isHair ? 'Advanced Hair' : 'Advanced Skin'} Solutions | AdGro`;
+      document.title = `${isHair ? 'Hair' : 'Skin'} Treatments | Advanced GroHair & GloSkin ${BRANCH_NAME}`;
     }, 400);
     
     window.scrollTo({ top: 0, behavior: 'instant' });
     return () => clearTimeout(timer);
-  }, [category, isHair, navigate]);
+  }, [category, isHair]);
 
-
-  // --- UI STATES ---
+  // --- LOADING STATE ---
   if (loading) return (
-    <div className="h-screen w-full flex flex-col items-center justify-center bg-[#fcfcfc]">
-      <div className="w-16 h-16 border-4 border-gray-100 border-t-[#B70303] rounded-full animate-spin mb-6 shadow-xl" />
-      <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-dark animate-pulse">
-        Initializing Clinic Data...
-      </span>
+    <div className="h-screen flex items-center justify-center bg-[#f8f9fa]">
+      <div className="w-12 h-12 border-4 border-gray-200 border-t-brand-red rounded-full animate-spin" />
     </div>
   );
 
   return (
-    <div className="bg-[#fcfcfc] min-h-screen font-sans">
+    <div className="min-h-screen bg-[#f8f9fa] pb-32 font-sans selection:bg-brand-red selection:text-white">
       
-      {/* --- CINEMATIC HERO SECTION --- */}
-      <section className="relative w-full pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-brand-dark">
-        {/* Dynamic Background Image based on category */}
-        <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-          <img 
-            src={isHair 
-              ? "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=2000&auto=format&fit=crop" 
-              : "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=2000&auto=format&fit=crop"} 
-            alt="Clinic Background" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center flex flex-col items-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 mb-8">
-            <Link to="/" className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors">Home</Link>
-            <ChevronRight size={12} className="text-brand-red" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-              {isHair ? 'Hair Solutions' : 'Skin Solutions'}
-            </span>
-          </motion.div>
-
+      {/* --- CINEMATIC DARK HEADER (Valliyur Style) --- */}
+      <section className="relative bg-brand-dark text-white pt-48 pb-44 flex flex-col items-center justify-center overflow-hidden z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-brand-dark to-black -z-10"></div>
+        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] mix-blend-overlay -z-10" />
+        
+        <div className="relative z-20 flex flex-col items-center px-6 text-center max-w-4xl mx-auto">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+            className="text-brand-red font-bold uppercase tracking-[0.4em] text-[10px] md:text-[11px] mb-6"
+          >
+            Clinical Portfolio • {BRANCH_NAME}
+          </motion.span>
+          
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif text-white font-bold tracking-tight mb-6 leading-[1.1]"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight mb-6 leading-tight"
           >
-            {isHair ? 'Advanced Hair' : 'Advanced Skin'} <br />
-            <span className="text-brand-red italic font-light">Transformations.</span>
+            {isHair ? 'All Hair Treatments' : 'All Skin Treatments'}
           </motion.h1>
-
+          
           <motion.p 
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-gray-300 text-lg md:text-xl max-w-2xl font-serif italic"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-400 text-sm md:text-base max-w-2xl leading-relaxed"
           >
-            Explore our comprehensive suite of clinically proven, USFDA-approved treatments designed to restore your natural confidence.
+            Discover our comprehensive range of USFDA-approved protocols, expertly administered at the {BRANCH_NAME} facility for transformative aesthetic results.
           </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, width: 0 }} animate={{ opacity: 1, width: 64 }} transition={{ duration: 0.8, delay: 0.4 }}
+            className="h-[2px] mt-10" 
+            style={{ backgroundImage: 'linear-gradient(to right, #D32F2F, #c5a059)' }}
+          />
         </div>
       </section>
 
-      {/* --- STICKY GLASSMORPHISM FILTER BAR --- */}
-      <div className="sticky top-[70px] lg:top-[80px] z-40 w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm transition-all duration-300">
+      {/* --- FILTER BAR (Adapted to Valliyur Light Theme) --- */}
+      <div className="sticky top-[70px] lg:top-[80px] z-40 w-full bg-[#f8f9fa]/90 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="flex items-center gap-4 py-4 overflow-x-auto no-scrollbar scroll-smooth">
-            <div className="flex items-center gap-2 text-brand-dark font-bold text-xs uppercase tracking-widest mr-4 flex-shrink-0">
-              <SlidersHorizontal size={16} className="text-brand-red" />
-              Filter By
-            </div>
-            
+          <div className="flex items-center gap-3 py-4 overflow-x-auto no-scrollbar scroll-smooth">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mr-2 flex-shrink-0">
+              Filter:
+            </span>
             {filterTabs.map((tab, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveFilter(tab)}
-                className={`relative px-6 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                className={`relative px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.1em] whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
                   activeFilter === tab 
-                    ? 'text-white shadow-lg' 
-                    : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-brand-dark border border-gray-100'
+                    ? 'text-white shadow-md' 
+                    : 'bg-white text-gray-500 hover:text-brand-dark border border-gray-200 hover:border-gray-300'
                 }`}
               >
                 {activeFilter === tab && (
                   <motion.div 
-                    layoutId="activeFilterBg" 
+                    layoutId="valliyurFilter" 
                     className="absolute inset-0 bg-brand-red rounded-full -z-10"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
-                {tab === 'all' ? 'All Treatments' : tab}
+                {tab === 'all' ? 'All Procedures' : tab}
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* --- DYNAMIC TREATMENT GRID --- */}
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <AnimatePresence mode="popLayout">
-              {filteredGrid.map((treatment) => {
-                // Determine the correct ID to use for the URL link
-                const linkId = treatment.id || treatment.slug;
+      {/* --- PREMIUM TREATMENT GRID (Exact Valliyur Style) --- */}
+      <section className="container mx-auto px-6 max-w-7xl relative z-20 -mt-16 pt-10">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
+          
+          <AnimatePresence mode="popLayout">
+            {filteredGrid.map((item, index) => {
+              const linkId = item.slug || item.id;
+              
+              return (
+                <motion.div 
+                  layout
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                  key={linkId} 
+                  className="group relative bg-white rounded-xl shadow-lg hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-700 hover:-translate-y-2 overflow-hidden flex flex-col border border-gray-100"
+                >
+                  
+                  {/* IMAGE CONTAINER */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                    <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
+                    
+                    <img 
+                      src={item.image || "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop"} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-1000"
+                    />
+                    
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand-red to-[#c5a059] z-20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out"></div>
+                  </div>
 
-                return (
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-                    transition={{ duration: 0.5, type: "spring" }}
-                    key={linkId}
-                    className="group flex flex-col bg-white rounded-[2rem] overflow-hidden border border-gray-100 hover:border-brand-red/30 shadow-sm hover:shadow-2xl transition-all duration-500"
-                  >
-                    {/* Image Container */}
-                    <Link to={`/${category}/${linkId}`} className="relative h-72 overflow-hidden block">
-                      <img 
-                        src={treatment.image || "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?q=80&w=800"} 
-                        alt={treatment.title} 
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[2000ms] ease-out"
-                      />
-                      <div className="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent transition-colors duration-500" />
-                      
-                      {/* Floating Category Badge */}
-                      <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-brand-dark shadow-sm">
-                        {treatment.filterCategory}
-                      </div>
-                    </Link>
-
-                    {/* Content Container */}
-                    <div className="p-8 flex flex-col flex-grow">
-                      <Link to={`/${category}/${linkId}`}>
-                        <h3 className="text-2xl font-serif font-bold text-brand-dark mb-4 group-hover:text-brand-red transition-colors line-clamp-2 leading-tight">
-                          {treatment.title}
-                        </h3>
-                      </Link>
-                      
-                      <p className="text-gray-500 font-sans text-sm leading-relaxed mb-8 flex-grow line-clamp-3">
-                        {treatment.description || treatment.fullDesc}
-                      </p>
-                      
-                      {/* Premium Action Button */}
+                  {/* CONTENT CONTAINER */}
+                  <div className="p-8 xl:p-10 flex flex-col flex-grow bg-white relative z-10">
+                    
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-3 group-hover:text-brand-red transition-colors duration-500">
+                      {item.filterCategory}
+                    </span>
+                    
+                    <h3 className="text-2xl font-serif font-bold text-brand-dark mb-4 leading-tight group-hover:text-brand-red transition-colors duration-500">
+                      {item.title}
+                    </h3>
+                    
+                    <p className="text-gray-500 text-[15px] mb-8 line-clamp-3 leading-relaxed flex-grow">
+                      {item.description || item.fullDesc || "Experience advanced clinical care tailored to your unique aesthetic goals."}
+                    </p>
+                    
+                    {/* --- THE VALLIYUR PREMIUM BUTTON --- */}
+                    <div className="mt-auto pt-4">
                       <Link 
-                        to={`/${category}/${linkId}`}
-                        className="w-full flex items-center justify-between px-6 py-4 bg-[#f8f9fa] rounded-xl group-hover:bg-brand-dark transition-colors duration-500 mt-auto"
+                        to={`/${parentPath}/${linkId}`} 
+                        className="group/btn relative flex items-center justify-between w-full px-6 py-4 border border-gray-100 rounded-lg overflow-hidden transition-all duration-500 hover:border-brand-red hover:shadow-[0_10px_20px_-10px_rgba(211,47,47,0.3)]"
                       >
-                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-dark group-hover:text-white transition-colors">
-                          Explore Protocol
+                        <div className="absolute inset-0 bg-brand-red translate-x-[-101%] group-hover/btn:translate-x-0 transition-transform duration-500 ease-out"></div>
+                        
+                        <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-dark group-hover/btn:text-white transition-colors duration-500">
+                          Explore Procedure
                         </span>
-                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center group-hover:bg-brand-red transition-colors shadow-sm">
-                          <ArrowRight size={14} className="text-brand-dark group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+
+                        <div className="relative z-10 w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover/btn:bg-white/20 transition-all duration-500">
+                          <svg 
+                            className="w-4 h-4 text-brand-dark group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all duration-500" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
                         </div>
                       </Link>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
+                  </div>
 
-          {/* Fallback if a category has no items */}
-          {filteredGrid.length === 0 && (
-            <div className="w-full py-20 flex flex-col items-center text-center">
-              <Sparkles size={48} className="text-gray-200 mb-6" />
-              <h3 className="text-2xl font-serif text-brand-dark font-bold mb-2">Protocols Updating</h3>
-              <p className="text-gray-500 max-w-md">We are currently refining our clinical offerings for this category. Please check back soon.</p>
-            </div>
-          )}
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
 
-        </div>
+        </motion.div>
       </section>
-
-      {/* --- BOTTOM CTA BANNER --- */}
-      <section className="py-24 bg-brand-dark relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[150px] pointer-events-none" />
-        <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-serif text-white font-bold mb-6 leading-tight">
-            Not sure which <span className="text-brand-red italic font-light">protocol</span> is right for you?
-          </h2>
-          <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto font-sans">
-            Book a comprehensive analysis with our clinical experts to receive a personalized, evidence-based treatment blueprint.
-          </p>
-          <Link 
-            to="/contact" 
-            className="inline-block px-12 py-5 bg-brand-red text-white text-[12px] font-bold uppercase tracking-[0.3em] rounded-full shadow-[0_10px_30px_-10px_rgba(183,3,3,0.6)] hover:bg-white hover:text-brand-dark hover:-translate-y-1 transition-all duration-300"
-          >
-            Schedule Consultation
-          </Link>
-        </div>
-      </section>
-
+      
     </div>
   );
 };

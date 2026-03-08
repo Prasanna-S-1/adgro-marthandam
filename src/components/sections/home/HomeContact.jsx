@@ -133,9 +133,9 @@ const HomeContact = () => {
 
                 {/* Email Field */}
                 <div className="relative z-0 w-full group">
-                  <input type="email" id="email" required placeholder=" " className="block py-3 px-0 w-full text-base md:text-lg text-[#050505] bg-transparent border-0 border-b-[2px] border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-[#B70303] peer transition-colors" />
-                  <label htmlFor="email" className="absolute text-xs md:text-sm text-gray-400 tracking-[0.2em] font-bold uppercase duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-[#B70303] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Email Address *
+                  <input type="place" id="place" required placeholder=" " className="block py-3 px-0 w-full text-base md:text-lg text-[#050505] bg-transparent border-0 border-b-[2px] border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-[#B70303] peer transition-colors" />
+                  <label htmlFor="place" className="absolute text-xs md:text-sm text-gray-400 tracking-[0.2em] font-bold uppercase duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-[#B70303] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Place *
                   </label>
                 </div>
               </div>

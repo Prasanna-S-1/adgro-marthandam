@@ -2,13 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck } from 'lucide-react';
 
+// --- 1. IMPORT YOUR LOCAL IMAGES HERE ---
+import hairImg from '../../../assets/hairrest.jpeg';
+import skinImg from '../../../assets/skinrest.jpg';
+
 // --- DATA ARCHITECTURE ---
 const processData = [
   {
     id: "hair-process",
     title: "Hair Restoration Process",
     category: "Methodology",
-    image: "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=1000&auto=format&fit=crop",
+    image: hairImg,
     imagePosition: "left",
     steps: [
       {
@@ -29,7 +33,7 @@ const processData = [
     id: "skin-process",
     title: "Skin Treatment Process",
     category: "Protocols",
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1000&auto=format&fit=crop",
+    image: skinImg,
     imagePosition: "right",
     steps: [
       {
@@ -49,66 +53,82 @@ const processData = [
 ];
 
 const ProcessSection = () => {
-  // --- ULTRA-PREMIUM ANIMATION PHYSICS ---
+  // --- ULTRA-PREMIUM ANIMATION PHYSICS (MOBILE SAFE) ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
     }
   };
 
+  // Switched to Vertical slide for guaranteed mobile rendering
   const stepVariants = {
-    hidden: { opacity: 0, x: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
-      x: 0, 
+      y: 0, 
       transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
     }
   };
 
-  return (
-    <section className="w-full py-24 md:py-32 bg-white overflow-hidden selection:bg-[#B70303] selection:text-white">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-32 md:gap-40">
+  const slideLeft = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+  };
 
-        {processData.map((process) => {
+  const slideRight = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  return (
+    <section className="w-full py-20 md:py-32 bg-white overflow-hidden selection:bg-[#B70303] selection:text-white">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl flex flex-col gap-24 md:gap-40">
+
+        {processData.map((process, index) => {
           const isImageLeft = process.imagePosition === 'left';
+          // Alternate the animation direction based on image position
+          const imageAnimation = isImageLeft ? slideLeft : slideRight;
 
           return (
             <div
               key={process.id}
-              className={`flex flex-col lg:flex-row items-center gap-16 lg:gap-24 ${!isImageLeft ? 'lg:flex-row-reverse' : ''}`}
+              // FIX: gap-y-12 ensures text doesn't crash into images on mobile
+              className={`flex flex-col lg:flex-row items-center gap-y-12 lg:gap-16 xl:gap-24 ${!isImageLeft ? 'lg:flex-row-reverse' : ''}`}
             >
 
               {/* =========================================
                   IMAGE COLUMN: LUXURY FRAMING
               ========================================= */}
               <motion.div
-                initial={{ opacity: 0, x: isImageLeft ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                variants={imageAnimation}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }} // FIX: 0.1 triggers flawlessly on mobile
                 className="w-full lg:w-1/2 relative group"
               >
-                <div className="relative w-full max-w-md mx-auto lg:max-w-full aspect-square lg:aspect-[4/5] z-10">
+                {/* Scaled aspect ratio for perfect responsive framing */}
+                <div className="relative w-[90%] md:w-[85%] lg:w-full max-w-md mx-auto lg:max-w-full aspect-[4/5] z-10">
                   
-                  {/* Architectural Offset Border */}
-                  <div className={`absolute inset-0 border-[2px] border-[#B70303]/20 rounded-[2rem] -z-10 transition-transform duration-700 group-hover:translate-x-2 group-hover:translate-y-2 ${isImageLeft ? 'translate-x-4 translate-y-4 md:translate-x-8 md:translate-y-8' : '-translate-x-4 translate-y-4 md:-translate-x-8 md:translate-y-8'}`} />
+                  {/* Architectural Offset Border - Scaled down slightly on mobile to prevent horizontal overflow */}
+                  <div className={`absolute inset-0 border-[2px] border-[#B70303]/15 rounded-[2rem] -z-10 transition-transform duration-700 group-hover:translate-x-3 group-hover:translate-y-3 ${isImageLeft ? 'translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6' : '-translate-x-3 translate-y-3 md:-translate-x-6 md:translate-y-6'}`} />
 
                   {/* Main Image Frame */}
-                  <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[6px] md:border-[10px] border-white bg-white">
+                  <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] border-[6px] md:border-[10px] border-white bg-white">
                     <img
                       src={process.image}
                       alt={process.title}
-                      className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[2000ms] ease-out"
+                      // FIX: object-[center_top] ensures the patient's face stays in frame even when cropped vertically
+                      className="w-full h-full object-cover object-[center_top] scale-105 group-hover:scale-100 transition-transform duration-[2000ms] ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/30 to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/40 to-transparent opacity-60" />
                   </div>
 
                   {/* Floating Premium Badge */}
-                  <div className={`absolute -bottom-6 ${isImageLeft ? '-right-4 md:-right-8' : '-left-4 md:-left-8'} bg-white/95 backdrop-blur-md p-4 md:p-5 shadow-xl rounded-2xl border border-gray-100 z-20 flex items-center gap-3 group-hover:-translate-y-2 transition-transform duration-500`}>
-                     <div className="w-10 h-10 rounded-full bg-[#B70303]/10 flex items-center justify-center text-[#B70303]">
-                       <ShieldCheck size={20} strokeWidth={2} />
+                  <div className={`absolute -bottom-5 ${isImageLeft ? '-right-3 md:-right-6' : '-left-3 md:-left-6'} bg-white/95 backdrop-blur-md p-3 md:p-5 shadow-xl rounded-2xl border border-gray-100 z-20 flex items-center gap-3 group-hover:-translate-y-2 transition-transform duration-500`}>
+                     <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#B70303]/10 flex items-center justify-center text-[#B70303]">
+                       <ShieldCheck size={18} className="md:w-5 md:h-5" strokeWidth={2} />
                      </div>
                      <div>
                        <p className="text-[#050505] font-bold text-[9px] md:text-[10px] uppercase tracking-widest leading-none mb-1">Clinical</p>
@@ -122,13 +142,13 @@ const ProcessSection = () => {
               {/* =========================================
                   TEXT COLUMN: EDITORIAL TIMELINE
               ========================================= */}
-              <div className="w-full lg:w-1/2 flex flex-col justify-center">
+              <div className="w-full lg:w-1/2 flex flex-col justify-center mt-8 lg:mt-0">
 
                 {/* Section Title & Accent */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="flex items-center gap-4 mb-4 md:mb-6">
@@ -137,7 +157,7 @@ const ProcessSection = () => {
                       {process.category}
                     </span>
                   </div>
-                  <h2 className="text-3xl md:text-5xl lg:text-5xl font-serif text-[#050505] font-bold leading-[1.1] mb-12 md:mb-16 tracking-tight">
+                  <h2 className="text-4xl md:text-5xl lg:text-[3.25rem] font-serif text-[#050505] font-bold leading-[1.1] mb-12 md:mb-16 tracking-tight">
                     {process.title}.
                   </h2>
                 </motion.div>
@@ -147,7 +167,7 @@ const ProcessSection = () => {
                   variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.1 }}
                   className="flex flex-col"
                 >
                   {process.steps.map((step, stepIndex) => {
@@ -160,25 +180,25 @@ const ProcessSection = () => {
                         className="flex group relative"
                       >
                         {/* 1. The Timeline Node & Line */}
-                        <div className="flex flex-col items-center mr-6 md:mr-8 relative z-10">
-                          <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white border-[4px] border-gray-200 group-hover:border-[#B70303] group-hover:bg-[#B70303] transition-all duration-500 shadow-sm flex-shrink-0" />
+                        <div className="flex flex-col items-center mr-5 md:mr-8 relative z-10">
+                          <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white border-[4px] border-gray-100 group-hover:border-[#B70303] group-hover:bg-[#B70303] transition-all duration-500 shadow-sm flex-shrink-0" />
                           {!isLast && (
-                            <div className="w-[2px] h-full bg-gray-100 my-2 group-hover:bg-gradient-to-b group-hover:from-[#B70303]/50 group-hover:to-gray-100 transition-all duration-500" />
+                            <div className="w-[2px] h-full bg-gray-100 my-2 group-hover:bg-gradient-to-b group-hover:from-[#B70303]/50 group-hover:to-gray-100 transition-all duration-700" />
                           )}
                         </div>
 
                         {/* 2. The Content Block */}
-                        <div className="pb-12 md:pb-16 flex flex-col relative">
+                        <div className="pb-10 md:pb-16 flex flex-col relative w-full">
                           
                           {/* Ghost Number (Editorial background element) */}
-                          <span className="absolute -top-6 -left-4 text-6xl md:text-7xl font-serif font-bold text-gray-50 opacity-50 group-hover:text-[#B70303]/5 transition-colors duration-500 pointer-events-none select-none z-0">
+                          <span className="absolute -top-5 -left-3 md:-top-6 md:-left-4 text-5xl md:text-7xl font-serif font-bold text-gray-50 group-hover:text-[#B70303]/5 transition-colors duration-500 pointer-events-none select-none z-0">
                             0{stepIndex + 1}
                           </span>
 
-                          <h3 className="text-xl md:text-2xl font-serif text-[#050505] font-bold mb-3 group-hover:text-[#B70303] transition-colors duration-300 relative z-10">
+                          <h3 className="text-xl md:text-2xl font-serif text-[#050505] font-bold mb-2 md:mb-3 group-hover:text-[#B70303] transition-colors duration-300 relative z-10 pr-4">
                             {step.title}
                           </h3>
-                          <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light relative z-10 max-w-md">
+                          <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light relative z-10 max-w-md pr-2">
                             {step.description}
                           </p>
                         </div>
